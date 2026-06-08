@@ -5,39 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>테스트 퀴즈</title>
     <style>
-        body { font-family: 'Malgun Gothic', sans-serif; background-color: #f4f6f9; padding: 20px; color: #333; margin: 0; }
-        .quiz-container { max-width: 650px; margin: 30px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
-        h1 { text-align: center; color: #2c3e50; margin-bottom: 10px; font-size: 28px; }
-        .subtitle { text-align: center; color: #7f8c8d; margin-bottom: 40px; font-size: 14px; }
-        .quiz-item { margin-bottom: 30px; padding-bottom: 25px; border-bottom: 1px solid #f1f2f6; }
-        .question { font-size: 16px; font-weight: bold; margin-bottom: 15px; line-height: 1.6; color: #2d3436; }
-        .score { color: #e74c3c; font-size: 13px; font-weight: normal; margin-left: 5px; }
+        /* 기본 배경 및 레이아웃 */
+        body { font-family: 'Malgun Gothic', sans-serif; background-color: #f0f2f5; padding: 20px; color: #333; margin: 0; }
+        .quiz-container { max-width: 680px; margin: 30px auto; background: transparent; }
         
-        /* 객관식 스타일 */
+        /* 메인 타이틀 박스 */
+        .quiz-header { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; margin-bottom: 25px; border-top: 6px solid #3182ce; }
+        h1 { color: #2c3e50; margin: 0 0 10px 0; font-size: 28px; }
+        .subtitle { color: #7f8c8d; margin: 0; font-size: 14px; }
+        
+        /* ⭐ [핵심 변경] 문제별로 확실하게 구분되는 카드형 박스 스타일 */
+        .quiz-item { 
+            background: white; 
+            margin-bottom: 25px; 
+            padding: 25px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03); 
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease-in-out;
+        }
+        /* 문제를 풀 때 집중할 수 있도록 마우스를 올리면 테두리가 강조됨 */
+        .quiz-item:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(49, 130, 206, 0.1);
+            border-color: #bee3f8;
+        }
+        
+        /* 문항 제목 스타일 */
+        .question { font-size: 17px; font-weight: bold; margin-bottom: 18px; line-height: 1.6; color: #2d3436; display: flex; align-items: baseline; }
+        .score { color: #e74c3c; font-size: 13px; font-weight: normal; margin-left: 8px; background: #fff5f5; padding: 2px 6px; border-radius: 4px; border: 1px solid #fed7d7; }
+        
+        /* 객관식 보기 스타일 */
         .options { list-style: none; padding: 0; margin: 0; }
         .options li { margin-bottom: 10px; }
-        .options label { display: block; padding: 12px 15px; background: #f8f9fa; border: 1px solid #e2e8f0; border-radius: 6px; cursor: pointer; transition: all 0.2s ease; font-size: 15px; }
-        .options label:hover { background: #edf2f7; border-color: #cbd5e0; }
-        .options input[type="radio"] { margin-right: 12px; transform: scale(1.1); vertical-align: middle; }
+        .options label { display: block; padding: 12px 15px; background: #f8f9fa; border: 1px solid #edf2f7; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; font-size: 15px; }
+        .options label:hover { background: #ebf8ff; border-color: #90cdf4; color: #2b6cb0; }
+        .options input[type="radio"] { margin-right: 12px; transform: scale(1.15); vertical-align: middle; }
         
-        /* 주관식 스타일 */
-        .text-answer { width: 100%; max-width: 400px; padding: 12px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 15px; box-sizing: border-box; transition: border-color 0.2s; }
-        .text-answer:focus { border-color: #3182ce; outline: none; }
-        .hint { font-size: 13px; color: #718096; margin-top: 6px; display: block; }
+        /* 주관식 입력창 스타일 */
+        .text-answer { width: 100%; max-width: 450px; padding: 12px 15px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 15px; box-sizing: border-box; transition: all 0.2s; background: #fdfdfd; }
+        .text-answer:focus { border-color: #3182ce; background: white; outline: none; box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15); }
+        .hint { font-size: 12px; color: #4a5568; margin-top: 8px; display: block; background: #edf2f7; padding: 6px 10px; border-radius: 6px; width: fit-content; }
         
-        /* 버튼 및 결과 */
-        .btn-submit { display: block; width: 100%; padding: 16px; background: #3182ce; color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 30px; transition: background 0.2s; }
-        .btn-submit:hover { background: #2b6cb0; }
-        .result { margin-top: 25px; padding: 20px; border-radius: 8px; text-align: center; font-size: 22px; font-weight: bold; display: none; line-height: 1.5; }
-        .success { background-color: #c6f6d5; color: #22543d; border: 1px solid #9ae6b4; }
-        .fail { background-color: #fed7d7; color: #742a2a; border: 1px solid #feb2b2; }
+        /* 제출 버튼 및 결과창 */
+        .btn-submit { display: block; width: 100%; padding: 18px; background: #3182ce; color: white; border: none; border-radius: 12px; font-size: 19px; font-weight: bold; cursor: pointer; margin-top: 35px; box-shadow: 0 4px 6px rgba(49, 130, 206, 0.2); transition: all 0.2s; }
+        .btn-submit:hover { background: #2b6cb0; transform: translateY(-1px); }
+        .result { margin-top: 25px; padding: 25px; border-radius: 12px; text-align: center; font-size: 24px; font-weight: bold; display: none; line-height: 1.6; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .success { background-color: #c6f6d5; color: #22543d; border: 2px solid #38a169; }
+        .fail { background-color: #fed7d7; color: #742a2a; border: 2px solid #e53e3e; }
     </style>
 </head>
 <body>
 
 <div class="quiz-container">
-    <h1>📝 종합 평가 테스트</h1>
-    <div class="subtitle">모든 문제를 풀고 최하단의 제출하기 버튼을 누르세요.</div>
+    <div class="quiz-header">
+        <h1>📝 종합 평가 테스트</h1>
+        <div class="subtitle">모든 문제를 풀고 최하단의 제출하기 버튼을 누르세요.</div>
+    </div>
     
     <form id="quizForm">
         <div id="quiz-box"></div>
@@ -48,127 +72,127 @@
 </div>
 
 <script>
-// 💡 [선생님 설정] 문제 데이터 (내용수정이 필요하시면 이 부분을 바꾸세요)
+// 💡 문제 데이터 (내용수정이 필요하시면 이 부분을 바꾸세요)
 const quizData = [
     {
         type: "text",
-        question: "1. 어느 지도에서 2cm는 실제 거리로는 4KM가 된다. 지도상에서 5cm는 실제 거리로 얼마인가?",
-        hint: "(답변예시 : 10KM - 대문자 입력 및 띄어쓰기 없이 숫자와 단위만 입력)",
+        question: "어느 지도에서 2cm는 실제 거리로는 4KM가 된다. 지도상에서 5cm는 실제 거리로 얼마인가?",
+        hint: "💡 답변예시 : 10KM (대문자 입력 및 띄어쓰기 없이 숫자와 단위만 입력)",
         answer: "10KM"
     },
     {
         type: "text",
-        question: "2. 조립(어셈블리)를 영어로 쓰시오.",
-        hint: "(영문 소문자로 입력하세요. 예: assembly)",
+        question: "조립(어셈블리)를 영어로 쓰시오.",
+        hint: "💡 영문 소문자로 입력하세요. (예: assembly)",
         answer: "assembly"
     },
     {
         type: "choice",
-        question: "3. 15 ( ) (9-6) + 4 x 3 = 17 에서 괄호 안에 들어갈 적절한 기호는?",
+        question: "15 ( ) (9-6) + 4 x 3 = 17 에서 괄호 안에 들어갈 적절한 기호는?",
         options: ["+", "-", "÷", "x"],
-        answer: 2 // 세번째 보기 '÷'가 정답 (0부터 시작하므로 2)
+        answer: 2
     },
     {
         type: "choice",
-        question: "4. 짝지어진 두 단어의 관계가 다른 것을 고르시오.",
+        question: "짝지어진 두 단어의 관계가 다른 것을 고르시오.",
         options: ["Strong – Weak", "Huge – Tiny", "Blank – Fix", "Slow – Fast"],
-        answer: 2 // 세번째 보기 'Blank - Fix' (반의어 관계가 아님)
+        answer: 2
     },
     {
         type: "text",
-        question: "5. 정리하다(어레인지)를 영어로 쓰시오.",
-        hint: "(영문 소문자로 입력하세요. 예: arrange)",
+        question: "정리하다(어레인지)를 영어로 쓰시오.",
+        hint: "💡 영문 소문자로 입력하세요. (예: arrange)",
         answer: "arrange"
     },
     {
         type: "text",
-        question: "6. [임의문항] 다음 계산을 하시오: 120 - 45",
-        hint: "(숫자만 입력하세요)",
+        question: "다음 계산을 하시오: 120 - 45",
+        hint: "💡 숫자만 입력하세요.",
         answer: "75"
     },
     {
         type: "text",
-        question: "7. 73.862 + 33.529 - 325.793 을 계산하시오.",
-        hint: "(마이너스 부호와 소수점을 정확히 입력하세요. 예: -218.402)",
+        question: "73.862 + 33.529 - 325.793 을 계산하시오.",
+        hint: "💡 마이너스 부호와 소수점을 정확히 입력하세요. (예: -218.402)",
         answer: "-218.402"
     },
     {
         type: "text",
-        question: "8. 전기(일렉트릭)을 영어로 쓰시오.",
-        hint: "(영문 소문자로 입력하세요. 예: electric)",
+        question: "전기(일렉트릭)을 영어로 쓰시오.",
+        hint: "💡 영문 소문자로 입력하세요. (예: electric)",
         answer: "electric"
     },
     {
         type: "text",
-        question: "9. 4 x 27 - 3 x 2 ÷ 3 을 계산하시오.",
-        hint: "(숫자만 입력하세요)",
+        question: "4 x 27 - 3 x 2 ÷ 3 을 계산하시오.",
+        hint: "💡 숫자만 입력하세요.",
         answer: "106"
     },
     {
         type: "text",
-        question: "10. 품질(퀄리티)를 영어로 쓰시오.",
-        hint: "(영문 소문자로 입력하세요. 예: quality)",
+        question: "품질(퀄리티)를 영어로 쓰시오.",
+        hint: "💡 영문 소문자로 입력하세요. (예: quality)",
         answer: "quality"
     },
     {
         type: "choice",
-        question: "11. 대화의 빈칸에 들어갈 말로 알맞은 것을 고르시오.<br><br>A : I went fishing in the East Sea<br>B : Really? ____________?<br>A : It was so much fun!",
+        question: "대화의 빈칸에 들어갈 말로 알맞은 것을 고르시오.<br><br>A : I went fishing in the East Sea<br>B : Really? ____________?<br>A : It was so much fun!",
         options: ["How was it", "Where was it", "When did you go", "Who went with you"],
         answer: 0
     },
     {
         type: "choice",
-        question: "12. 수빈이와 어머니의 나이차는 32이다. 그리고 어머니의 나이는 수빈이의 나이의 3배라면 현재 수빈이의 나이는?",
+        question: "수빈이와 어머니의 나이차는 32이다. 그리고 어머니의 나이는 수빈이의 나이의 3배라면 현재 수빈이의 나이는?",
         options: ["13", "18", "14", "16"],
-        answer: 3 // 네번째 보기 '16'이 정답
+        answer: 3
     },
     {
         type: "text",
-        question: "13. 오류(에러)를 영어로 쓰시오.",
-        hint: "(영문 소문자로 입력하세요. 예: error)",
+        question: "오류(에러)를 영어로 쓰시오.",
+        hint: "💡 영문 소문자로 입력하세요. (예: error)",
         answer: "error"
     },
     {
         type: "choice",
-        question: "14. 다음 중 제시된 단어와 같거나 비슷한 뜻을 가진 것을 고르시오.<br><br><b>region</b>",
+        question: "다음 중 제시된 단어와 같거나 비슷한 뜻을 가진 것을 고르시오.<br><br><b>region</b>",
         options: ["area", "surface", "situation", "union"],
         answer: 0
     },
     {
         type: "text",
-        question: "15. 12 - 4 x 8 + 32 ÷ 4 를 계산하시오.",
-        hint: "(숫자만 입력하세요)",
+        question: "12 - 4 x 8 + 32 ÷ 4 를 계산하시오.",
+        hint: "💡 숫자만 입력하세요.",
         answer: "-12"
     },
     {
         type: "text",
-        question: "16. 생산(프로덕션)을 영어로 쓰시오.",
-        hint: "(영문 소문자로 입력하세요. 예: production)",
+        question: "생산(프로덕션)을 영어로 쓰시오.",
+        hint: "💡 영문 소문자로 입력하세요. (예: production)",
         answer: "production"
     },
     {
         type: "text",
-        question: "17. 영수는 100M를 뛰는데 17초가 걸린다. 희원이는 50M를 뛰는데 11초가 걸린다. 둘이 각각 150M를 나누어 뛰었을 때(총 300M), 걸리는 시간은 총 몇 초인가?",
-        hint: "(단위 없이 숫자만 입력하세요)",
-        answer: "58.5" // 영수 25.5초 + 희원 33초 = 58.5초
+        question: "영수는 100M를 뛰는데 17초가 걸린다. 희원이는 50M를 뛰는데 11초가 걸린다. 둘이 각각 150M를 나누어 뛰었을 때(총 300M), 걸리는 시간은 총 몇 초인가?",
+        hint: "💡 단위 없이 숫자만 입력하세요.",
+        answer: "58.5"
     },
     {
         type: "text",
-        question: "18. [{20 - (4 x 3) x 4} ÷ 2] + 3 을 계산하시오.",
-        hint: "(숫자만 입력하세요)",
+        question: "[{20 - (4 x 3) x 4} ÷ 2] + 3 을 계산하시오.",
+        hint: "💡 숫자만 입력하세요.",
         answer: "-11"
     },
     {
         type: "text",
-        question: "19. 기술(테크놀로지)를 영어로 쓰시오.",
-        hint: "(영문 소문자로 입력하세요. 예: technology)",
+        question: "기술(테크놀로지)를 영어로 쓰시오.",
+        hint: "💡 영문 소문자로 입력하세요. (예: technology)",
         answer: "technology"
     },
     {
         type: "choice",
-        question: "20. [임의문항] 다음 분수식을 계산하고 답변에 해당하는 보기를 고르시오. (4/2 + 6/3)",
+        question: "다음 분수식을 계산하고 답변에 해당하는 보기를 고르시오. (4/2 + 6/3)",
         options: ["3", "1", "4", "2"],
-        answer: 2 // 세번째 보기 '4'가 정답
+        answer: 2
     }
 ];
 
@@ -179,7 +203,7 @@ function renderQuiz() {
 
     quizData.forEach((q, index) => {
         html += `<div class="quiz-item">`;
-        html += `<div class="question">${index + 1}. ${q.question.replace(/^\d+\.\s*/, '')} <span class="score">(5점)</span></div>`;
+        html += `<div class="question"><span>${index + 1}. ${q.question}</span> <span class="score">5점</span></div>`;
 
         if (q.type === "choice") {
             html += `<ul class="options">`;
@@ -222,7 +246,6 @@ function checkAnswers() {
         } else if (q.type === "text") {
             const typed = form.querySelector(`input[name="question${index}"]`).value.trim();
             if (!typed) unanswred = true;
-            // 대소문자 구분 없애고 정답 비교
             if (typed.toLowerCase() === q.answer.toLowerCase()) {
                 score += 5;
             }
@@ -245,11 +268,9 @@ function checkAnswers() {
         resultBox.innerHTML = `👍 수고하셨습니다. <br> 총점: ${score} / ${totalQuestions}점`;
     }
     
-    // 제출 후 화면 맨 위로 스크롤 이동
     window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
-// 페이지 로드시 실행
 renderQuiz();
 </script>
 
