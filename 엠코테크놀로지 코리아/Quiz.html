@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기초 수학 및 어휘 종합 평가</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        .quiz-card {
+            background: #fdfdfd;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        .quiz-card:hover {
+            border-color: #3498db;
+            box-shadow: 0 2px 8px rgba(52,152,219,0.1);
+        }
+        .q-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        .option-item:hover {
+            background-color: #f0f7fc;
+        }
+        input[type="text"] {
+            width: 100%;
+            max-width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        input[type="text"]:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 40px;
+            transition: background 0.2s;
+        }
+        .btn-submit:hover {
+            background: #2980b9;
+        }
+        .result-section {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background: #e8f8f5;
+            border: 2px solid #2ecc71;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .score {
+            font-size: 2em;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .feedback {
+            margin-top: 10px;
+            display: none;
+            font-size: 0.9em;
+            color: #e67e22;
+            background: #fef5e7;
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 4px solid #e67e22;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📝 종합 학업성취도 평가</h1>
+    <div class="subtitle">제한시간 없음 | 문항별 5점 (총 100점 만점)</div>
+    
+    <form id="quizForm">
+        <!-- 5번 -->
+        <div class="quiz-card" id="q5-box">
+            <div class="q-title">5. 어느 지도에서 1cm는 실제 거리로는 4KM가 된다. 지도상에서 5cm는 실제 거리로는 얼마인가? (영문 대문자로 단위를 붙여 쓰시오. 예: 20KM)</div>
+            <input type="text" id="q5" placeholder="답안 입력">
+            <div class="feedback" id="f5">💡 해설: 1cm = 4KM 이므로, 5cm는 4KM × 5 = 20KM가 됩니다.</div>
+        </div>
+
+        <!-- 6번 -->
+        <div class="quiz-card" id="q6-box">
+            <div class="q-title">6. 조립(어셈블리)를 영어로 쓰시오. (알파벳 소문자로 입력)</div>
+            <input type="text" id="q6" placeholder="답안 입력">
+            <div class="feedback" id="f6">💡 해설: 정답은 'assembly'입니다.</div>
+        </div>
+
+        <!-- 7번 -->
+        <div class="quiz-card" id="q7-box">
+            <div class="q-title">7. 15 ( ) (9-6) + 4x3 = 17 에서 괄호 안에 들어갈 적절한 기호는?</div>
+            <div class="options">
+                <label class="option-item"><input type="radio" name="q7" value="1"> ① +</label>
+                <label class="option-item"><input type="radio" name="q7" value="2"> ② -</label>
+                <label class="option-item"><input type="radio" name="q7" value="3"> ③ ÷</label>
+                <label class="option-item"><input type="radio" name="q7" value="4"> ④ x</label>
+            </div>
+            <div class="feedback" id="f7">💡 해설: 15 ÷ (3) + 12 = 5 + 12 = 17이 되므로 나눗셈(③) 기호가 알맞습니다.</div>
+        </div>
+
+        <!-- 8번 -->
+        <div class="quiz-card" id="q8-box">
+            <div class="q-title">8. 짝지어진 두 단어의 관계가 다른 것을 고르시오.</div>
+            <div class="options">
+                <label class="option-item"><input type="radio" name="q8" value="1"> ① Strong – Weak</label>
+                <label class="option-item"><input type="radio" name="q8" value="2"> ② Huge – Tiny</label>
+                <label class="option-item"><input type="radio" name="q8" value="3"> ③ Blank – Fix</label>
+                <label class="option-item"><input type="radio" name="q8" value="4"> ④ Slow – Fast</label>
+            </div>
+            <div class="feedback" id="f8">💡 해설: 다른 쌍들은 모두 반의어 관계이지만, Blank(비어있는)와 Fix(고치다)는 반의어가 아닙니다.</div>
+        </div>
+
+        <!-- 9번 -->
+        <div class="quiz-card" id="q9-box">
+            <div class="q-title">9. 정리하다(어레인지)를 영어로 쓰시오. (알파벳 소문자로 입력)</div>
+            <input type="text" id="q9" placeholder="답안 입력">
+            <div class="feedback" id="f9">💡 해설: 정답은 'arrange'입니다.</div>
+        </div>
+
+        <!-- 10번 -->
+        <div class="quiz-card" id="q10-box">
+            <div class="q-title">10. 다음 식을 계산하시오: 5 × 6 - 12 ÷ 3</div>
+            <input type="text" id="q10" placeholder="답안 입력">
+            <div class="feedback" id="f10">💡 해설: 곱셈과 나눗셈을 먼저 계산하면 30 - 4 = 26이 됩니다.</div>
+        </div>
+
+        <!-- 11번 -->
+        <div class="quiz-card" id="q11-box">
+            <div class="q-title">11. 73.862 + 33.529 - 325.793을 계산하시오. (마이너스 부호 및 소수점 3자리 유의)</div>
+            <input type="text" id="q11" placeholder="답안 입력">
+            <div class="feedback" id="f11">💡 해설: 73.862 + 33.529 = 107.391 이며, 여기서 325.793을 빼면 -218.402 입니다.</div>
+        </div>
+
+        <!-- 12번 -->
+        <div class="quiz-card" id="q12-box">
+            <div class="q-title">12. 전기(일렉트릭)을 영어로 쓰시오. (알파벳 소문자로 입력)</div>
+            <input type="text" id="q12" placeholder="답안 입력">
+            <div class="feedback" id="f12">💡 해설: 정답은 'electric' 또는 'electricity'입니다.</div>
+        </div>
+
+        <!-- 13번 -->
+        <div class="quiz-card" id="q13-box">
+            <div class="q-title">13. 4x27-3x2÷3을 계산하시오.</div>
+            <input type="text" id="q13" placeholder="답안 입력">
+            <div class="feedback" id="f13">💡 해설: 4 × 27 = 108 이고 3 × 2 ÷ 3 = 2 이므로, 108 - 2 = 106 입니다.</div>
+        </div>
+
+        <!-- 14번 -->
+        <div class="quiz-card" id="q14-box">
+            <div class="q-title">14. 품질(퀄리티)를 영어로 쓰시오. (알파벳 소문자로 입력)</div>
+            <input type="text" id="q14" placeholder="답안 입력">
+            <div class="feedback" id="f14">💡 해설: 정답은 'quality'입니다.</div>
+        </div>
+
+        <!-- 15번 -->
+        <div class="quiz-card" id="q15-box">
+            <div class="q-title">15. 대화의 빈칸에 들어갈 말로 알맞은 것을 고르시오.<br><br>A : I went fishing in the East Sea<br>B : Really? ____________?<br>A : It was so much fun!</div>
+            <div class="options">
+                <label class="option-item"><input type="radio" name="q15" value="1"> ① How was it</label>
+                <label class="option-item"><input type="radio" name="q15" value="2"> ② Where was it</label>
+                <label class="option-item"><input type="radio" name="q15" value="3"> ③ When did you go</label>
+                <label class="option-item"><input type="radio" name="q15" value="4"> ④ Who went with you</label>
+            </div>
+            <div class="feedback" id="f15">💡 해설: 소감을 답하고 있으므로 어땠는지 묻는 ①번이 정답입니다.</div>
+        </div>
+
+        <!-- 16번 -->
+        <div class="quiz-card" id="q16-box">
+            <div class="q-title">16. 수빈이와 어머니의 나이차는 32이다. 그리고 어머니의 나이는 수빈이의 나이의 3배라면 현재 수빈이의 나이는?</div>
+            <div class="options">
+                <label class="option-item"><input type="radio" name="q16" value="1"> ① 13</label>
+                <label class="option-item"><input type="radio" name="q16" value="2"> ② 18</label>
+                <label class="option-item"><input type="radio" name="q16" value="3"> ③ 14</label>
+                <label class="option-item"><input type="radio" name="q16" value="4"> ④ 16</label>
+            </div>
+            <div class="feedback" id="f16">💡 해설: 어머니(3x) - 수빈(x) = 32 -> 2x = 32이므로 수빈이는 16세(④)입니다.</div>
+        </div>
+
+        <!-- 17번 -->
+        <div class="quiz-card" id="q17-box">
+            <div class="q-title">17. 오류(에러)를 영어로 쓰시오. (알파벳 소문자로 입력)</div>
+            <input type="text" id="q17" placeholder="답안 입력">
+            <div class="feedback" id="f17">💡 해설: 정답은 'error'입니다.</div>
+        </div>
+
+        <!-- 18번 -->
+        <div class="quiz-card" id="q18-box">
+            <div class="q-title">18. 다음 중 제시된 단어와 같거나 비슷한 뜻을 가진 것을 고르시오.<br><br><b>region</b></div>
+            <div class="options">
+                <label class="option-item"><input type="radio" name="q18" value="1"> ① area</label>
+                <label class="option-item"><input type="radio" name="q18" value="2"> ② surface</label>
+                <label class="option-item"><input type="radio" name="q18" value="3"> ③ situation</label>
+                <label class="option-item"><input type="radio" name="q18" value="4"> ④ union</label>
+            </div>
+            <div class="feedback" id="f18">💡 해설: region은 '지역, 구역'을 의미하므로 area(①)가 가장 가까운 표현입니다.</div>
+        </div>
+
+        <!-- 19번 -->
+        <div class="quiz-card" id="q19-box">
+            <div class="q-title">19. 12 - 4 x 8 + 32 ÷ 4를 계산하시오.</div>
+            <input type="text" id="q19" placeholder="답안 입력">
+            <div class="feedback" id="f19">💡 해설: 곱셈과 나눗셈을 먼저 정산하면 12 - 32 + 8 = -12가 됩니다.</div>
+        </div>
+
+        <!-- 20번 -->
+        <div class="quiz-card" id="q20-box">
+            <div class="q-title">20. 생산(프로덕션)을 영어로 쓰시오. (알파벳 소문자로 입력)</div>
+            <input type="text" id="q20" placeholder="답안 입력">
+            <div class="feedback" id="f20">💡 해설: 정답은 'production'입니다.</div>
+        </div>
+
+        <!-- 21번 -->
+        <div class="quiz-card" id="q21-box">
+            <div class="q-title">21. 영수는 100M를 뛰는데 17초가 걸린다. 희원이는 50M를 뛰는데 11초가 걸린다. 둘이 각각 150M를 나누어 뛰었을 때(총 300M), 걸리는 시간은 어떻게 되는가? (숫자만 입력. 예: 58.5)</div>
+            <input type="text" id="q21" placeholder="답안 입력">
+            <div class="feedback" id="f21">💡 해설: 영수(150M) = 25.5초, 희원(150M) = 33초이므로 합산하면 58.5초입니다.</div>
+        </div>
+
+        <!-- 22번 -->
+        <div class="quiz-card" id="q22-box">
+            <div class="q-title">22. [{20 - (4x3) x 4} ÷ 2] + 3을 계산하시오.</div>
+            <input type="text" id="q22" placeholder="답안 입력">
+            <div class="feedback" id="f22">💡 해설: [{20 - 48} ÷ 2] + 3 = [-28 ÷ 2] + 3 = -14 + 3 = -11 입니다.</div>
+        </div>
+
+        <!-- 23번 -->
+        <div class="quiz-card" id="q23-box">
+            <div class="q-title">23. 기술(테크놀로지)를 영어로 쓰시오. (알파벳 소문자로 입력)</div>
+            <input type="text" id="q23" placeholder="답안 입력">
+            <div class="feedback" id="f23">💡 해설: 정답은 'technology'입니다.</div>
+        </div>
+
+        <!-- 24번 -->
+        <div class="quiz-card" id="q24-box">
+            <div class="q-title">24. 다음 식을 계산하고 답변에 해당하는 보기를 고르시오.<br><br><b>(8 ÷ 2) - 2</b></div>
+            <div class="options">
+                <label class="option-item"><input type="radio" name="q24" value="1"> ① 3</label>
+                <label class="option-item"><input type="radio" name="q24" value="2"> ② 1</label>
+                <label class="option-item"><input type="radio" name="q24" value="3"> ③ 1/2</label>
+                <label class="option-item"><input type="radio" name="q24" value="4"> ④ 2</label>
+            </div>
+            <div class="feedback" id="f24">💡 해설: 4 - 2 = 2 이므로 보기 ④번이 정답입니다.</div>
+        </div>
+
+        <button type="button" class="btn-submit" onclick="gradeQuiz()">시험지 제출하기</button>
+    </form>
+
+    <div class="result-section" id="resultBox">
+        <h2>🎉 채점 결과</h2>
+        <div class="score" id="finalScore">0점 / 100점</div>
+        <p>틀린 문제는 문제지 카드의 주황색 해설을 참고하여 복습하세요!</p>
+    </div>
+</div>
+
+<script>
+function gradeQuiz() {
+    let score = 0;
+    
+    // 5번 채점
+    const ans5 = document.getElementById('q5').value.trim().toUpperCase();
+    if(ans5 === '20KM') score += 5;
+    
+    // 6번 채점
+    const ans6 = document.getElementById('q6').value.trim().toLowerCase();
+    if(ans6 === 'assembly') score += 5;
+
+    // 7번 채점
+    const ans7 = document.querySelector('input[name="q7"]:checked');
+    if(ans7 && ans7.value === '3') score += 5;
+
+    // 8번 채점
+    const ans8 = document.querySelector('input[name="q8"]:checked');
+    if(ans8 && ans8.value === '3') score += 5;
+
+    // 9번 채점
+    const ans9 = document.getElementById('q9').value.trim().toLowerCase();
+    if(ans9 === 'arrange') score += 5;
+
+    // 10번 채점
+    const ans10 = document.getElementById('q10').value.trim();
+    if(ans10 === '26') score += 5;
+
+    // 11번 채점
+    const ans11 = document.getElementById('q11').value.trim();
+    if(ans11 === '-218.402') score += 5;
+
+    // 12번 채점
+    const ans12 = document.getElementById('q12').value.trim().toLowerCase();
+    if(ans12 === 'electric' || ans12 === 'electricity') score += 5;
+
+    // 13번 채점
+    const ans13 = document.getElementById('q13').value.trim();
+    if(ans13 === '106') score += 5;
+
+    // 14번 채점
+    const ans14 = document.getElementById('q14').value.trim().toLowerCase();
+    if(ans14 === 'quality') score += 5;
+
+    // 15번 채점
+    const ans15 = document.querySelector('input[name="q15"]:checked');
+    if(ans15 && ans15.value === '1') score += 5;
+
+    // 16번 채점
+    const ans16 = document.querySelector('input[name="q16"]:checked');
+    if(ans16 && ans16.value === '4') score += 5;
+
+    // 17번 채점
+    const ans17 = document.getElementById('q17').value.trim().toLowerCase();
+    if(ans17 === 'error') score += 5;
+
+    // 18번 채점
+    const ans18 = document.querySelector('input[name="q18"]:checked');
+    if(ans18 && ans18.value === '1') score += 5;
+
+    // 19번 채점
+    const ans19 = document.getElementById('q19').value.trim();
+    if(ans19 === '-12') score += 5;
+
+    // 20번 채점
+    const ans20 = document.getElementById('q20').value.trim().toLowerCase();
+    if(ans20 === 'production') score += 5;
+
+    // 21번 채점
+    const ans21 = document.getElementById('q21').value.trim();
+    if(ans21 === '58.5') score += 5;
+
+    // 22번 채점
+    const ans22 = document.getElementById('q22').value.trim();
+    if(ans22 === '-11') score += 5;
+
+    // 23번 채점
+    const ans23 = document.getElementById('q23').value.trim().toLowerCase();
+    if(ans23 === 'technology') score += 5;
+
+    // 24번 채점
+    const ans24 = document.querySelector('input[name="q24"]:checked');
+    if(ans24 && ans24.value === '4') score += 5;
+
+    // 결과 박스 갱신 및 해설 노출
+    document.getElementById('finalScore').innerText = score + "점 / 100점";
+    document.getElementById('resultBox').style.display = 'block';
+    
+    const feedbacks = document.getElementsByClassName('feedback');
+    for(let i=0; i<feedbacks.length; i++) {
+        feedbacks[i].style.display = 'block';
+    }
+
+    // 결과 확인 화면으로 부드럽게 스크롤
+    document.getElementById('resultBox').scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
