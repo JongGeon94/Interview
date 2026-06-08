@@ -38,6 +38,13 @@
         .result { margin-top: 25px; padding: 25px; border-radius: 12px; text-align: center; font-size: 24px; font-weight: bold; display: none; line-height: 1.6; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .success { background-color: #c6f6d5; color: #22543d; border: 2px solid #38a169; }
         .fail { background-color: #fed7d7; color: #742a2a; border: 2px solid #e53e3e; }
+
+        /* 새로 추가된 정답 피드백 스타일 */
+        .feedback { margin-top: 15px; padding: 12px 15px; border-radius: 8px; font-size: 14px; font-weight: bold; display: none; }
+        .feedback.correct { background-color: #e6fffa; color: #1d4ed8; border: 1px solid #bbeeeb; }
+        .feedback.wrong { background-color: #fff5f5; color: #dc2626; border: 1px solid #fed7d7; }
+        .quiz-item.item-correct { border-color: #38a169; background-color: #fffffa; }
+        .quiz-item.item-wrong { border-color: #e53e3e; background-color: #fffbfa; }
     </style>
 </head>
 <body>
@@ -48,12 +55,12 @@
         <div class="subtitle">모든 문제를 풀고 최하단의 제출하기 버튼을 누르세요.</div>
     </div>
     
+    <div id="resultBox" class="result"></div>
+
     <form id="quizForm">
         <div id="quiz-box"></div>
         <button type="button" class="btn-submit" onclick="checkAnswers()">정답 제출하기</button>
     </form>
-
-    <div id="resultBox" class="result"></div>
 </div>
 
 <script>
@@ -98,7 +105,7 @@ const quizData = [
     {
         type: "text",
         question: "73.862 + 33.529 - 325.793 을 계산하시오.",
-        hint: "💡 마이너스 부호와 소수점을 정확히 입력하세요. ", // 7번 예시 변경 완료!
+        hint: "💡 마이너스 부호와 소수점을 정확히 입력하세요. ", 
         answer: "-218.402"
     },
     {
@@ -187,7 +194,7 @@ function renderQuiz() {
     let html = '';
 
     quizData.forEach((q, index) => {
-        html += `<div class="quiz-item">`;
+        html += `<div class="quiz-item" id="item${index}">`;
         html += `<div class="question"><span>${index + 1}. ${q.question}</span> <span class="score">5점</span></div>`;
 
         if (q.image) {
@@ -213,6 +220,8 @@ function renderQuiz() {
             }
         }
 
+        // 정답 피드백 영역 추가
+        html += `<div class="feedback" id="feedback${index}"></div>`;
         html += `</div>`;
     });
 
@@ -224,19 +233,23 @@ function checkAnswers() {
     const form = document.getElementById('quizForm');
     let unanswred = false;
 
+    // 모든 피드백 및 카드 스타일 초기화
+    quizData.forEach((q, index) => {
+        const itemCard = document.getElementById(`item${index}`);
+        const feedbackBox = document.getElementById(`feedback${index}`);
+        itemCard.className = "quiz-item";
+        feedbackBox.style.display = "none";
+        feedbackBox.className = "feedback";
+    });
+
+    // 미입력 확인 확인
     quizData.forEach((q, index) => {
         if (q.type === "choice") {
             const selected = form.querySelector(`input[name="question${index}"]:checked`);
             if (!selected) unanswred = true;
-            if (selected && parseInt(selected.value) === q.answer) {
-                score += 5;
-            }
         } else if (q.type === "text") {
             const typed = form.querySelector(`input[name="question${index}"]`).value.trim();
             if (!typed) unanswred = true;
-            if (typed.toLowerCase() === q.answer.toLowerCase()) {
-                score += 5;
-            }
         }
     });
 
@@ -244,6 +257,45 @@ function checkAnswers() {
         return;
     }
 
+    // 채점 및 결과 화면 표시
+    quizData.forEach((q, index) => {
+        const itemCard = document.getElementById(`item${index}`);
+        const feedbackBox = document.getElementById(`feedback${index}`);
+        let isCorrect = false;
+        let correctAnswerText = "";
+
+        if (q.type === "choice") {
+            const selected = form.querySelector(`input[name="question${index}"]:checked`);
+            correctAnswerText = `${q.answer + 1}번. ${q.options[q.answer]}`;
+            
+            if (selected && parseInt(selected.value) === q.answer) {
+                isCorrect = true;
+                score += 5;
+            }
+        } else if (q.type === "text") {
+            const typed = form.querySelector(`input[name="question${index}"]`).value.trim();
+            correctAnswerText = q.answer;
+            
+            if (typed.toLowerCase() === q.answer.toLowerCase()) {
+                isCorrect = true;
+                score += 5;
+            }
+        }
+
+        // 개별 문제 결과 피드백 적용
+        feedbackBox.style.display = "block";
+        if (isCorrect) {
+            itemCard.classList.add("item-correct");
+            feedbackBox.classList.add("correct");
+            feedbackBox.innerHTML = `⭕ 정답입니다!`;
+        } else {
+            itemCard.classList.add("item-wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackBox.innerHTML = `❌ 틀렸습니다. (정답: <strong>${correctAnswerText}</strong>)`;
+        }
+    });
+
+    // 상단 총점 알림판 갱신 및 스크롤 이동
     const resultBox = document.getElementById('resultBox');
     resultBox.style.display = "block";
     
@@ -253,7 +305,7 @@ function checkAnswers() {
         resultBox.innerHTML = `🎉 만점입니다! <br> 총점: ${score} / ${totalQuestions}점`;
     } else {
         resultBox.className = "result fail";
-        resultBox.innerHTML = `👍 수고하셨습니다. <br> 총점: ${score} / ${totalQuestions}점`;
+        resultBox.innerHTML = `👍 수고하셨습니다. 아래에서 틀린 문제를 확인하세요.<br> 총점: ${score} / ${totalQuestions}점`;
     }
     
     window.scrollTo({top: 0, behavior: 'smooth'});
