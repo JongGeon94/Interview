@@ -27,7 +27,7 @@
 
         header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
         h1 {
@@ -42,11 +42,43 @@
             font-size: 1.1rem;
         }
 
+        /* 🗂️ 카테고리 필터 버튼 스타일 추가 */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            background-color: #fff;
+            border: 1px solid #e1e4e6;
+            padding: 10px 22px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #555;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
-            margin-top: 30px;
+            margin-top: 10px;
         }
 
         .card {
@@ -55,10 +87,15 @@
             border-radius: 10px;
             padding: 25px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+        }
+
+        /* 필터링 시 부드럽게 사라지게 하기 위한 설정 */
+        .card.hide {
+            display: none !important;
         }
 
         .card:hover {
@@ -128,28 +165,32 @@
         <div class="subtitle">학생들의 실전 면접 질문과 팁을 공유하고 기록하는 공간입니다.</div>
     </header>
 
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterCards('all')">전체 보기</button>
+        <button class="filter-btn" onclick="filterCards('interview')">🎙️ 면접 복기</button>
+        <button class="filter-btn" onclick="filterCards('ai')">🤖 AI 역량검사</button>
+    </div>
+
     <div class="grid">
-        <!-- 1. DB하이텍 카드 -->
-        <div class="card">
+        <div class="card" data-type="interview">
             <div>
                 <span class="badge interview">면접 복기</span>
                 <h2 class="card-title">DB 하이텍</h2>
                 <p class="card-desc">오퍼레이터(제조/생산) 직무 기출 질문 및 실전 면접장 배치도, 합격 팁 정리</p>
             </div>
-            <!-- ★ 중요: 위 구조에서 만든 db_hitek.html 파일로 바로 연결되는 링크입니다 -->
             <a href="db_hitek.html" class="btn">복기 자료 보기</a>
         </div>
 
-        <div class="card">
+        <div class="card" data-type="ai">
             <div>
-                <span class="badge interview">AI 역량검사</span>
+                <span class="badge ai">AI 역량검사</span>
                 <h2 class="card-title">엠코테크놀로지 코리아</h2>
                 <p class="card-desc">AI 역량 검사 기출 문제</p>
             </div>
             <a href="AMKR.html" class="btn">기출 문제 풀어 보기</a>
         </div>
 
-        <div class="card">
+        <div class="card" data-type="interview">
             <div>
                 <span class="badge interview">면접 복기</span>
                 <h2 class="card-title">스태츠칩팩코리아</h2>
@@ -158,7 +199,7 @@
             <a href="stats.html" class="btn">복기 자료 보기</a>
         </div>
         
-        <div class="card">
+        <div class="card" data-type="interview">
             <div>
                 <span class="badge interview">면접 복기</span>
                 <h2 class="card-title">HT 솔루션</h2>
@@ -166,9 +207,17 @@
             </div>
             <a href="HTS.html" class="btn">복기 자료 보기</a>
         </div>
+
+        <div class="card" data-type="interview">
+            <div>
+                <span class="badge interview">면접 복기</span>
+                <h2 class="card-title">MTS 코퍼레이션</h2>
+                <p class="card-desc">반도체 PM엔지니어 직무 기출 질문(3인 통합), 군대 및 보호장구 관련 필수 질문 정리</p>
+            </div>
+            <a href="MTS.html" class="btn">복기 자료 보기</a>
+        </div>
         
-        <!-- 3. 추가 예정 카드 블록 -->
-        <div class="card" style="opacity: 0.6;">
+        <div class="card" data-type="ready" style="opacity: 0.6;">
             <div>
                 <span class="badge ready">업데이트 예정</span>
                 <h2 class="card-title">추가 기업 링크</h2>
@@ -183,6 +232,32 @@
     </footer>
 </div>
 
+<script>
+    function filterCards(type) {
+        // 1. 모든 필터 버튼에서 active 클래스 제거 후 클릭한 버튼에만 추가
+        const buttons = document.querySelectorAll('.filter-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        // 2. 카드 필터링 처리
+        const cards = document.querySelectorAll('.grid .card');
+        cards.forEach(card => {
+            const cardType = card.getAttribute('data-type');
+            
+            if (type === 'all') {
+                // 전체 보기일 때는 모든 카드 표시
+                card.classList.remove('hide');
+            } else if (type === 'interview' && cardType === 'interview') {
+                card.classList.remove('hide');
+            } else if (type === 'ai' && cardType === 'ai') {
+                card.classList.remove('hide');
+            } else {
+                // 조건에 맞지 않는 카드는 숨김
+                card.classList.add('hide');
+            }
+        });
+    }
+</script>
+
 </body>
 </html>
-
