@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>취업 실전 면접 및 필기 복기</title>
+    <style>
+        :root {
+            --primary-color: #00854a;
+            --bg-color: #f4f6f8;
+            --border-color: #222;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 30px 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        header {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: #555;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin: 0 0 10px 0;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .tip-box {
+            background-color: #f0f9f4;
+            border: 1px solid #ccecdb;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .tip-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .tip-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .tip-list li {
+            margin-bottom: 10px;
+        }
+
+        .exam-notice-box {
+            background: #f0f4f9; 
+            border: 1px solid #bcd0e6; 
+            border-radius: 8px;
+            padding: 22px; 
+            margin-bottom: 40px;
+        }
+        .exam-notice-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #111;
+            font-weight: 700;
+            border-left: 6px solid var(--primary-color);
+            padding-left: 14px;
+            margin: 40px 0 20px 0;
+        }
+
+        .qa-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .qa-card {
+            background: #ffffff;
+            border: 1px solid #e1e4e6;
+            border-radius: 8px;
+            padding: 22px;
+        }
+
+        .question-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 14px;
+        }
+
+        .question-num {
+            background: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85rem;
+            margin-right: 12px;
+        }
+
+        .answer-box {
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #ccd1d9;
+            padding: 16px;
+            margin: 0;
+            white-space: pre-wrap;
+            color: #444;
+            font-size: 1rem;
+        }
+
+        /* 📝 모의고사 시험지 스타일 */
+        .mock-exam-container {
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 30px;
+            margin-top: 20px;
+        }
+        .exam-subject-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #334155;
+            border-bottom: 2px solid #cbd5e1;
+            padding-bottom: 6px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .exam-q-item {
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        .exam-q-text {
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 6px;
+        }
+        .exam-q-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin: 8px 0;
+            line-height: 1.7;
+        }
+        .word-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            max-width: 400px;
+            margin-top: 8px;
+        }
+
+        /* 🔑 정답 확인 버튼 및 토글 박스 */
+        .toggle-ans-btn {
+            display: block;
+            width: 100%;
+            background: #334155;
+            color: #fff;
+            text-align: center;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: background 0.2s;
+        }
+        .toggle-ans-btn:hover { background: #1e293b; }
+        
+        .answer-sheet {
+            display: none;
+            background: #f8fafc;
+            border: 2px dashed #94a3b8;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 15px;
+        }
+        .answer-sheet h4 { margin-top: 0; color: #1e293b; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px; }
+        .ans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <a href="index.html" class="back-btn">⬅ 메인 목록으로 가기</a>
+        <h1>실전 면접 및 필기 기출 복기</h1>
+        <div class="subtitle">프리한 면접 전형 & 변별력 높은 필기시험 매뉴얼</div>
+    </header>
+
+    <div class="tip-box">
+        <div class="tip-title">💡 실전 면접 TIP & 총평</div>
+        <ul class="tip-list">
+            <li><strong>면접 분위기:</strong> 전체적으로 면접관들이 긴장을 풀어주며 <strong>매우 편안하고 프리한 분위기</strong>로 진행됩니다. 압박 면접보다는 인성과 가치관을 확인하는 일상적인 대화 형태가 주를 이룹니다.</li>
+            <li><strong>핵심 합격 팁:</strong> 면접 난이도가 낮고 프리하게 흘러가는 만큼 면접 점수 편차는 크지 않습니다. 진짜 합격의 당락을 가르는 최종 변수는 **필기시험 성적**이므로 지필 평가 대비에 올인해야 합니다.</li>
+        </ul>
+    </div>
+
+    <div class="exam-notice-box">
+        <div class="exam-notice-title">📝 필기시험 중요 안내 및 출제 기준</div>
+        <p style="margin: 0; color: #334155; font-size: 0.95rem; line-height: 1.6;">
+            • <strong>시험 구성:</strong> 수학 20문항, 영어 20문항 (총 40문항 내외)<br>
+            • <strong>소요 시간:</strong> 약 30분 정도 주어지며, 시간 안배가 매우 핵심적입니다.<br>
+            • <strong>난이도 요약:</strong> 수학은 현장 공정 계산 및 초·중등 사칙연산 기준이며, 영어는 기본 단어 매칭 및 실제 현장 PLC 자동화 설비 조작 명칭(Reset, Start, Stop 등)이 필수로 출제됩니다.
+        </p>
+    </div>
+
+    <div class="section-title">받은 질문 및 면접 복기 내용</div>
+    <div class="qa-list">
+        
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 01</span> 자기소개를 해보세요.</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 02</span> 우리 회사에 어떤 매력이 있다고 느껴서 지원하게 되었나요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 03</span> 입사 후 첫 월급을 받으면 가장 먼저 무엇을 할 것인지 말해보세요.</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 04</span> 회사가 서울과 가까운 편인데, 주말이나 휴일에 서울에 가서 무엇을 하고 싶나요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 05</span> 지금까지 살아오면서 어떤 아르바이트(알바)를 경험해 보았나요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 06</span> 현장에서 사수(선배 직원)와 업무적 혹은 개인적 트러블이 생기면 어떻게 해결할 것인가요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 07</span> 연고지가 아닌 타지 생활을 하면서 부모님이 그리울 때는 어떻게 마음을 다스릴 건가요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 08</span> 본인의 취미는 무엇인가요?</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 09</span> 마지막으로 하고 싶은 말이 있으면 해보세요.</div>
+            <pre class="answer-box">【답변 및 복기 내용 작성 영역】</pre>
+        </div>
+        
+    </div>
+
+    <div class="section-title">✍️ 필기시험 실전 적중 모의평가</div>
+    <div class="mock-exam-container">
+        <p style="margin-top:0; color:#64748b; font-size:0.9rem;">* 실제 출제된 학생들의 기억을 완벽히 재구성한 수학 10문항, 영어 10문항 모의 세트입니다.</p>
+        
+        <div class="exam-subject-title" style="border-left-color: #0284c7; color:#0284c7;">📊 제 1교시 : 수학 영역 (10문항)</div>
+        
+        <div class="exam-q-item">
+            <div class="exam-q-text">Q1. 어느 생산 라인의 월요일부터 금요일까지의 불량품 개수가 각각 4개, 7개, 5개, 8개, 6개였습니다. 이 라인의 하루 평균 불량품 개수는 몇 개인가요?</div>
+        </div>
+
+        <div class="exam-q-item">
+            <div class="exam-q-text">Q2. A, B, C 세 명의 몸무게 합은 210kg입니다. 이 세 사람의 평균 몸무게는 몇 kg인가요?</div>
+        </div>
+
+        <div class="exam-q-item">
+            <div class="exam-q-text">Q3. 제품 200개를 생산했는데 그중 15%가 규격 미달이었습니다. 규격 미달인 제품은 총 몇 개인가요?</div>
+        </div>
+
+        <div class="exam-q-item">
+            <div class="exam-q-text">Q4. 원래 가격이 80,000원인 부품을 25% 할인된 가격으로 구매하려고 합니다. 할인되는 금액은 얼마인가요?</div>
+        </div>
+
+        <div class="exam-q-item">
+            <div class="exam-q-text">Q5. 한 장의 웨이퍼에서 생산되는 반도체 칩의 개수가 장당 각각 110개, 125개, 115개, 130개였습니다. 웨이퍼 4장의 평균 칩 생산량은 몇 개인가요?</div>
+        </div>
+
+        <div class="exam-q-item">
+            <div class="exam-q-text">Q6. 두께가 0.35mm인 박막을 4층으로 쌓아 올렸을 때, 전체 박막의 두께는 몇 mm가 되나요?</div>
+        </div>
+
+        <div class="exam-q-item">
+            <div class="exam-q-text">Q7. 12.5 ÷ 5의 계산 결과 값은 얼마인가요?</div>
+        </div>
+
+        <div class="exam-q-item">
+            <div class="exam-q-text">Q8. 한 상자의 무게가 2.5kg인 원자재 박스가 총 8상자 있습니다. 이 원자재들의 총 무게는 몇 kg인가요?</div>
+        </div>
+
+        <div class="exam-q-item">
+            <div class="exam-q-text">Q9. 생산 설비 모니터에 현재 시각이 '오후 4시 15분'으로 표시되어 있습니다. 이를 24시간제 디지털 표기로 바꾸어 쓰면 몇 시 몇 분인가요?</div>
+        </div>
+
+        <div class="exam-q-item">
+            <div class="exam-q-text">Q10. 작업 지시서에 '21시 30분까지 설비 점검을 완료할 것'이라고 적혀 있습니다. 이를 오전/오후를 구분하는 12시간제 표기로 바르게 고치면 무엇인가요?</div>
+        </div>
+
+        <div class="exam-subject-title" style="border-left-color: #b45309; color:#b45309;">🔤 제 2교시 : 영어 영역 (10문항)</div>
+
+        <div class="exam-q-item">
+            <div class="exam-q-text">Q11. 다음 영어 요일 단어와 알맞은 한국어 뜻을 바르게 연결(선긋기)하세요.</div>
+            <div class="exam-q-box">
+                <strong>(1) Tuesday</strong>  |  <strong>(2) Thursday</strong>  |  <strong>(3) Saturday</strong><br>
+                [보기] ⓐ 목요일  ⓑ 화요일  ⓒ 토요일
+            </div>
+        </div>
+
+        <div class="exam-q-item">
+            <div class="exam-q-text">Q12. 1년 중 '8월'을 뜻하는 올바른 영어 단어를 고르세요.</div>
+            <div class="exam-q-box">① April &nbsp;&nbsp; ② August &nbsp;&nbsp; ③ October &nbsp;&nbsp; ④ December</div>
+        </div>
+
+        <div class="exam-q-item">
+            <div class="exam-q-text">Q13. 제시된 영어 단어와 정반대되는 뜻을 가진 단어를 각각 적으세요.</div>
+            <div class="exam-q-box">• <strong>Open</strong> ➡️ ( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ) &nbsp;&nbsp;&nbsp;&nbsp; • <strong>Start</strong> ➡️ ( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; )</div>
+        </div>
+
+        <div class="exam-q-item">
+            <div class="exam-q-text">Q14. 다음 단어들의 연관 관계를 분석하여 빈칸에 알맞은 단어를 고르세요.</div>
+            <div class="exam-q-box">
+                <strong>high : tall  =  low : ( &nbsp;&nbsp;&nbsp;&nbsp; )</strong><br>
+                ① big &nbsp;&nbsp; ② short &nbsp;&nbsp; ③ small &nbsp;&nbsp; ④ heavy
+            </div>
+        </div>
+
+        <div class="exam-q-item">
+            <div class="exam-q-text">Q15. 왼쪽 단어와 가장 연관성이 깊은 우측 카테고리를 찾아 선을 그으세요.</div>
+            <div class="word-grid">
+                <div>(1) Yellow</div><div>• ⓐ Month (월)</div>
+                <div>(2) January</div><div>• ⓑ Color (색상)</div>
+                <div>(3) Apple</div><div>• ⓒ Fruit (과일)</div>
+            </div>
+        </div>
+
+        <div class="exam-q-item">
+            <div class="exam-q-text">Q16. 문맥상 문장의 빈칸에 들어갈 가장 알맞은 단어를 고르세요.</div>
+            <div class="exam-q-box">
+                <strong>"Please ( &nbsp;&nbsp;&nbsp;&nbsp; ) the green button to begin the machine."</strong><br>
+                ① press &nbsp;&nbsp; ② look &nbsp;&nbsp; ③ break &nbsp;&nbsp; ④ leak
+            </div>
+        </div>
+
+        <div class="exam-q-item">
+            <div class="exam-q-text">Q17. [자동화 설비 용어] 설비 가동 중 갑작스러운 오류가 발생하여 시스템을 처음의 초기 상태로 되돌리고자(초기화) 할 때 사용하는 물리 버튼의 명칭은 무엇인가요?</div>
+        </div>
+
+        <div class="exam-q-item">
+            <div class="exam-q-text">Q18. [자동화 설비 용어] 작업을 모두 마치거나 긴급 위험 상황으로 인해 진행 중인 기계 설비 작동을 완전히 멈추려고 할 때 조작해야 하는 버튼의 명칭은 무엇인가요?</div>
+        </div>
+
+        <div class="exam-q-item">
+            <div class="exam-q-text">Q19. 공장 인터페이스 모니터에 "Inspection"이라는 단어가 주황색 점멸등과 함께 표기되었습니다. 이 단어가 의미하는 현장 작업은 무엇인가요?</div>
+            <div class="exam-q-box">① 조치 &nbsp;&nbsp; ② 청소 &nbsp;&nbsp; ③ 검사 &nbsp;&nbsp; ④ 포장</div>
+        </div>
+
+        <div class="exam-q-item">
+            <div class="exam-q-text">Q20. 설비 파이프 배관 센서에 "Leak" 경고 알람이 발생했습니다. 공정 내부에서 현재 어떤 문제가 일어난 상황인가요?</div>
+            <div class="exam-q-box">① 부품 파손 &nbsp;&nbsp; ② 가스/액체 누출 &nbsp;&nbsp; ③ 정상 가동 &nbsp;&nbsp; ④ 전원 차단</div>
+        </div>
+
+        <button class="toggle-ans-btn" onclick="toggleAnswerSheet()">🔑 모의평가 정답 및 해설지 열기/닫기</button>
+        
+        <div class="answer-sheet" id="answerSheet">
+            <h4>[수학 영역 정답]</h4>
+            <div class="ans-grid" style="margin-bottom: 20px;">
+                <div><strong>Q1.</strong> 6개 (합계 30 ÷ 5)</div>
+                <div><strong>Q2.</strong> 70kg (210 ÷ 3)</div>
+                <div><strong>Q3.</strong> 30개 (200의 15%)</div>
+                <div><strong>Q4.</strong> 20,000원 (25% 할인금액)</div>
+                <div><strong>Q5.</strong> 115개 (4장 평균값)</div>
+                <div><strong>Q6.</strong> 1.4mm (0.35 × 4)</div>
+                <div><strong>Q7.</strong> 2.5</div>
+                <div><strong>Q8.</strong> 20kg (2.5 × 8)</div>
+                <div><strong>Q9.</strong> 16시 15분 (오후 표기)</div>
+                <div><strong>Q10.</strong> 오후 9시 30분 (12시간제)</div>
+            </div>
+
+            <h4>[영어 및 실무 영역 정답]</h4>
+            <div class="ans-grid">
+                <div><strong>Q11.</strong> (1)-ⓑ, (2)-ⓐ, (3)-ⓒ</div>
+                <div><strong>Q12.</strong> ② August (8월)</div>
+                <div><strong>Q13.</strong> Close / Stop</div>
+                <div><strong>Q14.</strong> ② short (낮은/키작은)</div>
+                <div><strong>Q15.</strong> (1)-ⓑ, (2)-ⓐ, (3)-ⓒ</div>
+                <div><strong>Q16.</strong> ① press (버튼을 누르다)</div>
+                <div><strong>Q17.</strong> Reset (리셋 / 재설정)</div>
+                <div><strong>Q18.</strong> Stop (또는 Emergency Stop)</div>
+                <div><strong>Q19.</strong> ③ 검사 (Inspection)</div>
+                <div><strong>Q20.</strong> ② 가스/액체 누출 (Leak)</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function toggleAnswerSheet() {
+        const sheet = document.getElementById('answerSheet');
+        if (sheet.style.display === 'none' || sheet.style.display === '') {
+            sheet.style.display = 'block';
+        } else {
+            sheet.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>
