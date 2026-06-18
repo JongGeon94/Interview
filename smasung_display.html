@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>삼성디스플레이 면접 복기</title>
+    <style>
+        :root {
+            --primary-color: #00854a;
+            --bg-color: #f4f6f8;
+            --border-color: #222;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 30px 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        header {
+            position: relative;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 0;
+            top: 10px;
+            color: #555;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin: 0 0 10px 0;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        /* 🗂️ 시즌별/년도별 탭 스타일 */
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e1e4e6;
+            padding-bottom: 15px;
+        }
+
+        .tab-btn {
+            background-color: #fff;
+            border: 1px solid #cbd5e1;
+            padding: 10px 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #555;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .tab-btn.active {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* 🏢 배치도 레이아웃 */
+        .interview-room-section {
+            background: #fff;
+            border: 2px solid #e1e4e6;
+            border-radius: 8px;
+            padding: 30px 20px;
+            margin-bottom: 35px;
+        }
+
+        .room-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #333;
+        }
+
+        .room-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            gap: 12px;
+        }
+
+        .box {
+            border: 2px solid var(--border-color);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .interviewer {
+            width: 90px;
+            height: 60px;
+            background-color: #f0f7f4;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .main-table {
+            width: 85%;
+            height: 70px;
+            border: 2px dashed #666;
+            background: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: bold;
+        }
+
+        .interviewee {
+            width: 130px;
+            height: 60px;
+            background-color: #fffdf0;
+            color: #b78103;
+            border-color: #b78103;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            color: #111;
+            font-weight: 700;
+            border-left: 6px solid var(--primary-color);
+            padding-left: 14px;
+            margin: 35px 0 20px 0;
+        }
+
+        .qa-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .qa-card {
+            background: #ffffff;
+            border: 1px solid #e1e4e6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .question-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 12px;
+        }
+
+        .question-num {
+            background: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85rem;
+            margin-right: 12px;
+        }
+
+        .answer-box {
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #ccd1d9;
+            padding: 14px;
+            margin: 0;
+            white-space: pre-wrap;
+            color: #444;
+            font-size: 0.95rem;
+        }
+
+        .sub-q-text {
+            display: block;
+            color: #dc2626;
+            font-weight: 600;
+            margin-top: 5px;
+            font-size: 0.9rem;
+            padding-left: 5px;
+        }
+
+        .tip-box {
+            background-color: #f0f9f4;
+            border: 1px solid #ccecdb;
+            border-radius: 8px;
+            padding: 22px;
+            margin-bottom: 25px;
+        }
+
+        .tip-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+        }
+
+        .tip-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .tip-list li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <a href="index.html" class="back-btn">⬅ 메인 목록</a>
+        <h1>삼성디스플레이 면접 아카이브</h1>
+        <div class="subtitle">설비엔지니어 직무 마이스터 기출 복기 통합본</div>
+    </header>
+
+    <div class="tab-container">
+        <button class="tab-btn active" onclick="switchTab('season1')">2026학년도 A조 (박현 복기)</button>
+        <button class="tab-btn" onclick="switchTab('season2')">2026학년도 (부기공 학생 복기)</button>
+    </div>
+
+    <div id="season1" class="tab-content active">
+        
+        <div class="interview-room-section">
+            <div class="room-title">면접장 배치도 (A조: 면접관 4 : 지원자 다수 순차식)</div>
+            <div class="room-layout">
+                <div class="row">
+                    <div class="box interviewer">면접관</div>
+                    <div class="box interviewer">면접관</div>
+                    <div class="box interviewer">면접관</div>
+                    <div class="box interviewer">면접관</div>
+                </div>
+                <div style="color: #666; font-size: 0.9rem; font-weight: bold;">[ 앞면 PI 스크린 및 리모컨 위치 ]</div>
+                <div class="main-table">대면 면접용 책상 테이블</div>
+                <div class="row">
+                    <div class="box interviewee" style="width: 150px;">면접생 (박현)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <div class="tip-title">💡 A조 면접 실전 TIP & 총평 (난이도: 상)</div>
+            <ul class="tip-list">
+                <li><strong>조별 난이도 편차:</strong> 면접 조(A, B, C) 중 체감상 A조가 가장 까다롭고 압박 강도가 높은 편입니다. (A > C > B 구조) [cite: 3]</li>
+                <li><strong>철저한 압박 방어:</strong> 기본 질문만 20개 가까이 쏟아지며, 자격증 취득 목적이나 생기부 사소한 특기(노트정리 등)에 꼬리 질문을 집요하게 던지므로 당황하지 않고 웃으며 당당하게 답변해야 합니다[cite: 3].</li>
+                <li><strong>자격증 팁:</strong> 현장 평가 기준 ITQ 파워포인트보다는 E-test 자격증이 조금 더 실무성이 높게 평가되는 경향이 있습니다[cite: 3].</li>
+            </ul>
+        </div>
+
+        <div class="section-title">받은 질문 및 워크북</div>
+        <div class="qa-list">
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 01</span> 본 면접을 위해 순수하게 준비한 기간은 어느 정도 되나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 02</span> 취득한 기능사 자격증 외에 현재 필기시험만 합격해 둔 상태의 종목이 더 있나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 03</span> ITQ 파워포인트 자격증을 취득한 특별한 이유가 있나요?<span class="sub-q-text">↳ [꼬리] 그냥 학교에서 상(기능상)을 얻으려고 비교적 취득하기 쉬운 종목을 고른 것은 아닌가요?</span></div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 04</span> ITQ 자격증이 있음에도 불구하고, 본인이 제출한 PPT 자료의 완성도가 약간 부족하다고 생각해보진 않았나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 05</span> 평소 전공 및 자격증 공부는 어떤 방식으로 수행하나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 06</span> 생활기록부에 '노트 정리'가 특기로 기재되어 있는데, 왜 이것이 본인의 특기인가요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 07</span> 본인이 공들여 한 노트를 친구들에게 공유하면 정작 본인에게 학업적 불이익이 생기지는 않나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 08</span> 향후 대학(진학 시)에 가서도 본인의 필기 노트를 타인에게 아낌없이 공유할 생각인가요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 09</span> 지금까지 학교생활 중 본인의 역량 부족으로 인해 완수하지 못한 경험이 있나요? (예: 발표대회 불참 등)<span class="sub-q-text">↳ [꼬리] 그 불참 경험이 실제 반도체 설비 엔지니어 직무와 무슨 연관성이 있다고 생각합니까?</span></div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 10</span> 신체 조건상 어깨 불균형이 있다고 확인되는데, 특별히 위험할 수 있는 헬스(웨이트) 운동을 하는 이유는 무엇인가요? 원인은 무엇인가요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 11</span> 본인의 장점이 '꾸준함'이라면, 반대로 기술이나 환경이 급속도로 변화하는 첨단 반도체 현장에서는 적응이 더딘 편 아닌가요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 12</span> 타인을 도와주는 것을 진심으로 좋아한다면 엔지니어보다 사회봉사 계열이 적성에 더 맞는 것 아닌가요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 13</span> 특기인 '노트 정리 능력'이 입사 후 실제 설비 유지보수 업무에 구체적으로 어떤 도움을 줄 수 있나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 14</span> 고등학교 전공 학과가 자동차인데 디스플레이 반도체 분야인 당사에 지원하게 된 배경은 무엇인가요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 15</span> 자동차 정비 기능사는 왜 취득하셨나요?<span class="sub-q-text">↳ [꼬리] 아직 15기 선배들이 생산 현장 라인에 배치되기도 전인데, 현장에서 어떤 공구가 자주 쓰이는지 고등학생이 어떻게 상세히 알게 되었나요?</span></div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 16</span> 본인이 면접을 준비한 총 기간에 비해서 오늘 보여준 결과가 조금 부족하다고 생각되진 않나요? (압박)</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 17</span> 마지막으로 덧붙이고 싶은 한마디(마지막 말)를 해보세요.</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        </div>
+    </div>
+
+    <div id="season2" class="tab-content">
+        <div class="tip-box">
+            <div class="tip-title">💡 타 지원자 면접 총평 및 흐름</div>
+            <ul class="tip-list">
+                <li><strong>특징:</strong> 질문 스피드가 빠른 편이며, 면접관이 발언 내용을 다소 꼬아서 기습적으로 심층 유도 질문을 던지는 형태입니다[cite: 2].</li>
+                <li><strong>PT 구성 시간:</strong> PPT 프리젠테이션 구술 테스트를 포함하여 총 20~25분 내외로 속도감 있게 전개됩니다[cite: 2].</li>
+            </ul>
+        </div>
+
+        <div class="section-title">받은 질문 및 워크북</div>
+        <div class="qa-list">
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 01</span> 일반 인문계나 다른 고등학교 대신 마이스터고등학교에 진학하게 된 뚜렷한 계기는 무엇인가요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 02</span> 본인이 생각하는 스스로의 성격상 가장 뚜렷한 장점과 단점을 한 가지씩 말해보세요.</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 03</span> 살아오면서 본인이 무언가 의도치 않게 잘못 대처했거나 실패했던 대표적인 경험은 무엇인가요?<span class="sub-q-text">↳ [꼬리] 그것 말고 더 심각하게 잘못 대처했던 다른 경험은 없습니까?</span></div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 04</span> <strong>[실전 밸런스 선택]</strong> 입사 후 두 가지 부서 선택지가 주어집니다. 전자는 업무 환경이 위험하지만 그만큼 고연봉 보상이 따르고, 후자는 안정적이지만 업무 스트레스가 매우 큽니다. 둘 중 본인은 어떤 부서를 선택하겠습니까?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 05</span> 현장 라인에 배치받은 후, 성향이 잘 맞지 않거나 깐깐한 상사와 친해지기 위해 어떤 노력을 할 것인가요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 06</span> 격무 속에서 본인만의 스트레스를 건전하게 관리하고 해소하는 루틴이나 방법이 있나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 07</span> 학교 프로젝트나 동아리 활동 중 팀원들과 유기적으로 협동하여 성과를 만들어낸 경험이 있습니까?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 08</span> 생활기록부를 보니 고등학교 2학기 시즌에 수학 교과 성적이 다소 낮아졌는데 특별한 사유가 있나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 09</span> 생기부 활동 중 '에너지 절약 관련 사회봉사' 활동 내역이 적혀 있는데, 이것은 구체적으로 어떤 활동이었나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 10</span> 평소 취미 활동으로 배드민턴을 기재했는데, 처음에 배드민턴을 어떤 계기로 접하게 되었나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+            <div class="qa-card"><div class="question-title"><span class="question-num">질문 11</span> 오늘 진행된 면접 문항 중 본인이 사전 모의면접을 준비한 범위 내에서 출제된 비율은 어느 정도라고 느끼나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function switchTab(tabId) {
+        // 모든 탭 버튼 및 콘텐츠 비활성화
+        const buttons = document.querySelectorAll('.tab-btn');
+        const contents = document.querySelectorAll('.tab-content');
+        
+        buttons.forEach(btn => btn.classList.remove('active'));
+        contents.forEach(content => content.classList.remove('active'));
+        
+        // 선택한 탭 활성화
+        event.target.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+    }
+</script>
+
+</body>
+</html>
