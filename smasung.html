@@ -267,12 +267,11 @@
     </header>
 
     <div class="tab-container">
-        <button class="tab-btn active" onclick="switchTab('season1')">2026학년도 A조 (박현 복기)</button>
-        <button class="tab-btn" onclick="switchTab('season2')">2026학년도 (부기공 학생 복기)</button>
+        <button type="button" class="tab-btn active" onclick="switchTab(event, 'season1')">2026학년도 A조 (박현 복기)</button>
+        <button type="button" class="tab-btn" onclick="switchTab(event, 'season2')">2026학년도 (부기공 학생 복기)</button>
     </div>
 
     <div id="season1" class="tab-content active">
-        
         <div class="interview-room-section">
             <div class="room-title">면접장 배치도 (A조: 면접관 4 : 지원자 다수 순차식)</div>
             <div class="room-layout">
@@ -293,9 +292,9 @@
         <div class="tip-box">
             <div class="tip-title">💡 A조 면접 실전 TIP & 총평 (난이도: 상)</div>
             <ul class="tip-list">
-                <li><strong>조별 난이도 편차:</strong> 면접 조(A, B, C) 중 체감상 A조가 가장 까다롭고 압박 강도가 높은 편입니다. (A > C > B 구조) [cite: 3]</li>
-                <li><strong>철저한 압박 방어:</strong> 기본 질문만 20개 가까이 쏟아지며, 자격증 취득 목적이나 생기부 사소한 특기(노트정리 등)에 꼬리 질문을 집요하게 던지므로 당황하지 않고 웃으며 당당하게 답변해야 합니다[cite: 3].</li>
-                <li><strong>자격증 팁:</strong> 현장 평가 기준 ITQ 파워포인트보다는 E-test 자격증이 조금 더 실무성이 높게 평가되는 경향이 있습니다[cite: 3].</li>
+                <li><strong>조별 난이도 편차:</strong> 면접 조(A, B, C) 중 체감상 A조가 가장 까다롭고 압박 강도가 높은 편입니다. (A > C > B 구조)</li>
+                <li><strong>철저한 압박 방어:</strong> 기본 질문만 20개 가까이 쏟아지며, 자격증 취득 목적이나 생기부 사소한 특기(노트정리 등)에 꼬리 질문을 집요하게 던지므로 당황하지 않고 웃으며 당당하게 답변해야 합니다.</li>
+                <li><strong>자격증 팁:</strong> 현장 평가 기준 ITQ 파워포인트보다는 E-test 자격증이 조금 더 실무성이 높게 평가되는 경향이 있습니다.</li>
             </ul>
         </div>
 
@@ -325,8 +324,8 @@
         <div class="tip-box">
             <div class="tip-title">💡 타 지원자 면접 총평 및 흐름</div>
             <ul class="tip-list">
-                <li><strong>특징:</strong> 질문 스피드가 빠른 편이며, 면접관이 발언 내용을 다소 꼬아서 기습적으로 심층 유도 질문을 던지는 형태입니다[cite: 2].</li>
-                <li><strong>PT 구성 시간:</strong> PPT 프리젠테이션 구술 테스트를 포함하여 총 20~25분 내외로 속도감 있게 전개됩니다[cite: 2].</li>
+                <li><strong>특징:</strong> 질문 스피드가 빠른 편이며, 면접관이 발언 내용을 다소 꼬아서 기습적으로 심층 유도 질문을 던지는 형태입니다.</li>
+                <li><strong>PT 구성 시간:</strong> PPT 프리젠테이션 구술 테스트를 포함하여 총 20~25분 내외로 속도감 있게 전개됩니다.</li>
             </ul>
         </div>
 
@@ -349,16 +348,18 @@
 </div>
 
 <script>
-    function switchTab(tabId) {
-        // 모든 탭 버튼 및 콘텐츠 비활성화
+    function switchTab(e, tabId) {
+        if (e) {
+            e.preventDefault(); // 브라우저 주소 오인 및 리다이렉션 강제 차단
+        }
+        
         const buttons = document.querySelectorAll('.tab-btn');
         const contents = document.querySelectorAll('.tab-content');
         
         buttons.forEach(btn => btn.classList.remove('active'));
         contents.forEach(content => content.classList.remove('active'));
         
-        // 선택한 탭 활성화
-        event.target.classList.add('active');
+        e.currentTarget.classList.add('active');
         document.getElementById(tabId).classList.add('active');
     }
 </script>
