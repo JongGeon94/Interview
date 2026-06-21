@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025년도 한국전력공사 면접 복기</title>
+    <style>
+        :root {
+            --primary-color: #00854a;
+            --bg-color: #f4f6f8;
+            --border-color: #222;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 30px 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        header {
+            position: relative;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 0;
+            top: 10px;
+            color: #555;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin: 0 0 10px 0;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        /* 🏢 면접장 배치도 레이아웃 */
+        .interview-room-section {
+            background: #fff;
+            border: 2px solid #e1e4e6;
+            border-radius: 8px;
+            padding: 30px 20px;
+            margin-bottom: 35px;
+        }
+
+        .room-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #333;
+        }
+
+        .room-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            gap: 12px;
+        }
+
+        .box {
+            border: 2px solid var(--border-color);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .interviewer {
+            width: 90px;
+            height: 60px;
+            background-color: #f0f7f4;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .main-table {
+            width: 85%;
+            height: 70px;
+            border: 2px dashed #666;
+            background: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: bold;
+        }
+
+        .interviewee {
+            width: 130px;
+            height: 60px;
+            background-color: #fffdf0;
+            color: #b78103;
+            border-color: #b78103;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #fff;
+            background-color: var(--primary-color);
+            padding: 10px 20px;
+            font-weight: 700;
+            border-radius: 6px;
+            margin: 45px 0 20px 0;
+        }
+
+        .qa-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .qa-card {
+            background: #ffffff;
+            border: 1px solid #e1e4e6;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .question-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 12px;
+        }
+
+        .question-num {
+            background: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85rem;
+            margin-right: 12px;
+        }
+
+        .answer-box {
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #ccd1d9;
+            padding: 14px;
+            margin: 0;
+            white-space: pre-wrap;
+            color: #444;
+            font-size: 0.95rem;
+        }
+
+        .hint-box {
+            background: #f0f4f8;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: #1e3a8a;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .tip-box {
+            background-color: #f0f9f4;
+            border: 1px solid #ccecdb;
+            border-radius: 8px;
+            padding: 22px;
+            margin-bottom: 25px;
+        }
+
+        .tip-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+        }
+
+        .tip-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .tip-list li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <a href="index.html" class="back-btn">⬅ 메인 목록</a>
+        <h1>한국전력공사(KEPCO) 면접 복기</h1>
+        <div class="subtitle">2025학년도 고졸 채용 실전 기출 아카이브</div>
+    </header>
+
+    <div class="interview-room-section">
+        <div class="room-title">면접장 배치도 (창조관 면접실: 면접관 3 : 지원자 1 다대일 단독)</div>
+        <div class="room-layout">
+            <div class="row">
+                <div class="box interviewer">면접관 (왼쪽)</div>
+                <div class="box interviewer">면접관 (중앙)</div>
+                <div class="box interviewer">면접관 (오른쪽)</div>
+            </div>
+            <div class="main-table">대면 심사 및 답변용 면접 테이블</div>
+            <div class="row">
+                <div class="box interviewee" style="width: 150px;">지원자 (단독 착석)</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tip-box">
+        <div class="tip-title">💡 대기실 흐름 및 면접 실전 TIP</div>
+        <ul class="tip-list">
+            <li><strong>대기실 진행 프로세스:</strong> 한전 창조관 대기실에서 먼저 출석 체크를 진행한 뒤 보안 출입증을 부여받습니다. 대기 중에는 휴대폰을 조용히 사용할 수 있는 비교적 자유로운 분위기입니다.</li>
+            <li><strong>면접장 분위기:</strong> 압박을 가하기보다는 학생이 긴장하지 않고 본인의 역량을 편안하게 낼 수 있도록 배려해 주는 다정한 느낌을 받았습니다.</li>
+            <li><strong>필수 대비 가이드:</strong> 전공 핵심 원리뿐만 아니라, **한전 최근 보도자료 및 뉴스 기사(에너지 고속도로, 신재생 계통 연계 등)**를 반드시 숙지하고 가야 높은 점수를 얻을 수 있습니다.</li>
+        </ul>
+    </div>
+
+    <div class="section-title">⚡ 전공 및 직무 기출 질문</div>
+    <div class="qa-list">
+        
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 01</span> [그림 제시] 전주(전신주)에서 전선을 가설할 때 일직선으로 팽팽하게 당기지 않고, 일부러 아래로 늘어뜨려 놓는(이도, 弛度) 이유가 무엇입니까?</div>
+            <div class="hint-box">💡 <strong>모범답변 방향:</strong> 전선에 이도(Dip)를 주는 가장 큰 이유는 **'온도 변화에 따른斷線(단선) 방지 및 지지물 보호'**입니다. 여름철에는 열로 인해 전선이 늘어나지만, 겨울철에는 전선이 심하게 수축합니다. 만약 팽팽하게 가설하면 겨울철 수축 시 전선이 버티지 못하고 끊어지거나, 전주를 끌어당겨 지지물이 파손될 위험이 있기 때문에 여유를 두는 것입니다. 추가로 전선이 바람에 의해 진동하여 발생하는 피로 파괴를 줄여주는 역할도 합니다.</div>
+            <pre class="answer-box">【학생 답변 연습 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 02</span> 전력 계통에서 사용되는 '차단기(CB, Circuit Breaker)'에 대해 설명해 보세요.</div>
+            <div class="hint-box">💡 <strong>모범답변 방향:</strong> 차단기는 부하 전류가 흐르고 있는 정상 상태의 전로는 물론, **단락(합선)이나 지락(누전) 등 대전류가 흐르는 사고 발생 시에도 신속하게 전로를 차단**하여 선로와 설비를 보호하는 장치입니다. 부하 전류 및 사고 전류를 차단할 때 발생하는 강력한 불꽃(아크, Arc)을 소호(消弧)하는 능력을 갖추고 있습니다.</div>
+            <pre class="answer-box">【학생 답변 연습 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 03</span> 전력 계통에서 사용되는 '단로기(DS, Disconnecting Switch)'에 대해 설명해 보세요.</div>
+            <div class="hint-box">💡 <strong>모범답변 방향:</strong> 단로기는 **부하 전류가 흐르지 않는 무부하 상태에서 선로를 확실하게 분리(개폐)**하는 장치입니다. 아크를 소호하는 능력이 없기 때문에 전류가 흐르는 도중에 열면 대형 사고가 발생합니다. 주요 목적은 기기의 수리, 점검 시 작업자의 안전을 위해 전로가 완전히 차단되었음을 눈으로 확인시켜 주는 기기입니다.</div>
+            <pre class="answer-box">【학생 답변 연습 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 04</span> 차단기(CB)와 단로기(DS)의 가장 핵심적인 차이점은 무엇입니까?</div>
+            <div class="hint-box">💡 <strong>모범답변 방향:</strong> 가장 큰 차이는 **'소호 능력(부하 전류 및 사고 전류 차단 가능 여부)'**입니다. 차단기는 부하 전류와 고장 대전류를 모두 안전하게 끊을 수 있는 소호 장치가 있지만, 단로기는 소호 장치가 없어 전류가 흐르지 않는 무부하 상태에서만 개폐가 가능합니다. 따라서 오조작을 막기 위해 두 기기 사이에는 항상 차단기가 열려 있어야만 단로기를 조작할 수 있는 '인터록(Interlock)'이 걸려 있습니다.</div>
+            <pre class="answer-box">【학생 답변 연습 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 05</span> 우리 전기 분야에서 말하는 '전력계통'이란 무엇을 의미하나요?</div>
+            <div class="hint-box">💡 <strong>모범답변 방향:</strong> 전력계통이란 발전소에서 생산된 전기가 수용가(소비자)에게 이르기까지의 전 과정, 즉 **[발전 - 송전 - 변전 - 배전]이 유기적으로 연결된 하나의 커다란 전기적 시스템**을 뜻합니다. 한전은 이 계통을 안정적으로 운영하여 주파수(60Hz)와 전압을 일정하게 유지하고, 전력 품질을 극대화하는 역할을 관리합니다.</div>
+            <pre class="answer-box">【학생 답변 연습 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 06</span> 현장에 구축된 '배전반'에서 하는 핵심적인 일이 무엇이라고 생각합니까?</div>
+            <div class="hint-box">💡 <strong>모범답변 방향:</strong> 배전반은 발전소나 변전소로부터 전력을 받아 각 부하 시설에 맞게 전기를 나누어 주는 집전 및 분배 장치입니다. 내부의 계측기를 통해 **전압, 전류, 전력 등을 실시간 모원(모니터링)**하고, 차단기와 보호 계전기를 탑재하여 계통에 사고가 나면 스스로 전원을 차단해 **인명 및 설비의 안전을 지키는 제어 센터 역할**을 합니다.</div>
+            <pre class="answer-box">【학생 답변 연습 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 07</span> 최근 한전의 주요 화두인 '에너지 고속도로'에 대해서 설명할 수 있습니까?</div>
+            <div class="hint-box">💡 <strong>모범답변 방향:</strong> 에너지 고속도로는 신재생에너지(태양광, 풍력 등)가 집중된 호남이나 동해안 지역의 잔여 전력을, 전력 수요가 밀집된 수도권 및 반도체 특화단지로 막힘없이 수송하기 위해 구축하는 **'대규모 종횡축 송전망 인프라'**를 뜻합니다. 한전은 최근 전력망 건설 특별법 제정 등을 추진하며 이 에너지 고속도로를 적기에 건설하기 위해 전사적 역량을 집중하고 있습니다.</div>
+            <pre class="answer-box">【학생 답변 연습 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 08</span> 차세대 송전 기술인 '초고압 직류송전(HVDC)'에 대해서 설명해 보세요.</div>
+            <div class="hint-box">💡 <strong>모범답변 방향:</strong> HVDC는 발전소에서 생산된 교류(AC) 전력을 직류(DC)로 변환시켜 송전한 후, 받는 측에서 다시 교류로 변환해 공급하는 기술입니다. 교류 송전에 비해 **전력 손실이 매우 적어 장거리 대용량 송전에 유리**하며, 무효전력이 없어 지중 및 해저 케이블 송전에 최적입니다. 또한, 서로 다른 주파수의 전력망을 연계할 수 있어 미래 계통 안정화의 핵심 기술입니다.</div>
+            <pre class="answer-box">【학생 답변 연습 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 09</span> 한국전력공사(KEPCO)가 국가와 사회를 위해 기본적으로 하는 일이 무엇이라고 생각합니까?</div>
+            <div class="hint-box">💡 <strong>모범답변 방향:</strong> 한국전력공사는 대한민국의 안정적인 경제 성장과 국민 복지를 위해 **'품질 좋은 전기를 안전하고 안정적으로 생산 및 수송(송배전)'하는 국가 인프라 공기업**입니다. 발전 자회사들이 생산한 전기를 변전소를 거쳐 배전망을 통해 전국 각 가정과 산업 현장에 배달하며, 전력망 건설 및 에너지 효율화 기술 개발을 선도합니다.</div>
+            <pre class="answer-box">【학생 답변 연습 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 10</span> 전력 운영 용어 중 '정전'과 '휴전'의 차이점은 무엇입니까?</div>
+            <div class="hint-box">💡 <strong>모범답변 방향:</strong> 두 용어의 가장 큰 차이는 **'계획성 유무'**입니다. **정전**은 자연재해, 선로 고장, 과부하 등 예기치 못한 사고로 인해 전력 공급이 불시에 끊어지는 '강제적/돌발적 현상'입니다. 반면 **휴전**은 한전에서 선로 변압기 교체, 전주 이설, 설비 유지보수 작업을 위해 수용가에 **사전에 날짜와 시간을 공지하고 계획적으로 전력 공급을 일시 중단**하는 '예방 보전적 행위'입니다.</div>
+            <pre class="answer-box">【학생 답변 연습 영역】</pre>
+        </div>
+
+    </div>
+
+    <div class="section-title">👤 인성 및 조직 적응상황 질문</div>
+    <div class="qa-list">
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 11</span> 협업 중 팀의 방침이나 룰을 따르지 않는 고집스러운 팀원이 있다면 어떻게 대처할 것입니까?</div>
+            <div class="hint-box">💡 <strong>모범답변 방향:</strong> 감정적으로 비난하기보다 먼저 **'개인 면담을 통해 규칙을 따르지 못하는 원인을 경청'**하겠습니다. 업무 분담에 불만이 있거나 업무 이해도가 부족한 상태일 수 있기 때문입니다. 그 후 한전의 현장 안전과 직결되는 공적 규칙의 중요성을 상기시키고, 팀원이 잘 적응할 수 있도록 매뉴얼 공유 등 동료로서 적극적으로 서포트하여 원 팀(One-Team)을 만들겠습니다.</div>
+            <pre class="answer-box">【학생 답변 연습 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 12</span> 만약 동료가 갑자기 휴직을 하게 되어, 그 동료가 하던 아주 중요한 업무가 본인에게 과중된다면 어떻게 하겠습니까?</div>
+            <div class="hint-box">💡 <strong>모범답변 방향:</strong> 동료의 부재로 인한 업무 공백은 공공의 이익을 책임지는 한전인으로서 **당연히 책임감을 가지고 우선 수용**하겠습니다. 그 후 가중된 업무들의 기한과 중요도를 파악하여 우선순위를 재정립하겠습니다. 다만 독단적으로 처리하다가 과부하로 사고가 나면 안 되므로, 기한 내 처리가 물리적으로 불가능한 긴급한 핵심 업무에 대해서는 상사분께 투명하게 보고드려 업무 분장 조율이나 팀원 간 협조를 구하는 지혜를 발휘하겠습니다.</div>
+            <pre class="answer-box">【학생 답변 연습 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 13</span> 한국전력공사 입사 후 본인의 포부와 마지막으로 하고 싶은 말이 있다면 자유롭게 해보세요.</div>
+            <div class="hint-box">💡 <strong>모범답변 방향:</strong> 준비 기간은 다소 짧았을지라도 마이스터고에서 다져온 탄탄한 전기 기술력과 열정만큼은 누구보다 높음을 강조합니다. 현장 배전 부서의 선배님들을 도와 '안전 최우선'의 가치를 지키며 한전의 전력 품질 향상에 기여하는 정예 엔지니어가 되겠다는 다짐과 함께 면접 기회를 주신 면접관분들께 공손한 감사 인사를 전하며 마무리합니다.</div>
+            <pre class="answer-box">【학생 답변 연습 영역】</pre>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
