@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>부산교통공사 면접 복기</title>
+    <style>
+        :root {
+            --primary-color: #002f6c;   /* 부산교통공사 시그니처 네이비 */
+            --accent-color: #0ea5e9;    /* 포인트 하늘색 */
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #222;
+        }
+
+        body {
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 40px 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid #e1e4e6;
+        }
+
+        header {
+            position: relative;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 0;
+            top: 10px;
+            color: #555;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .back-btn:hover {
+            color: var(--primary-color);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.3rem;
+            margin: 0 0 10px 0;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        /* 🏢 배치도 레이아웃 (image_5dd2e4.png 기반 다대일 단독 구조 완벽 구현) */
+        .interview-room-section {
+            background: #fff;
+            border: 1px solid #e1e4e6;
+            border-radius: 8px;
+            padding: 30px 20px;
+            margin-bottom: 35px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+        }
+
+        .room-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #111;
+        }
+
+        .room-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+            max-width: 650px;
+            margin: 0 auto;
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            gap: 35px;
+        }
+
+        .box {
+            border: 2px solid var(--border-color);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .interviewer {
+            width: 100px;
+            height: 60px;
+            background-color: #f0f4f8;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .interviewee-circle {
+            width: 55px;
+            height: 55px;
+            border: 2px solid #b78103;
+            background-color: #fffdf0;
+            color: #b78103;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .entrance {
+            position: absolute;
+            bottom: 0;
+            left: 0;   /* 좌측 하단 입구 완벽 구현 */
+            width: 75px;
+            height: 40px;
+            border: 2px solid #cbd5e1;
+            background: #f8fafc;
+            color: #64748b;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .section-main-title {
+            font-size: 1.4rem;
+            color: #fff;
+            background-color: var(--primary-color);
+            padding: 12px 20px;
+            font-weight: 700;
+            border-radius: 8px;
+            margin: 45px 0 25px 0;
+        }
+
+        .qa-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .qa-card {
+            background: #ffffff;
+            border: 1px solid #e1e4e6;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .question-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 12px;
+        }
+
+        .question-num {
+            background: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85rem;
+            margin-right: 12px;
+        }
+
+        .answer-box {
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #ccd1d9;
+            padding: 14px;
+            margin: 0;
+            white-space: pre-wrap;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .hint-box {
+            background: #f0f4f8;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: #1e3a8a;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .tip-box {
+            background-color: #f0f9f4;
+            border: 1px solid #ccecdb;
+            border-radius: 8px;
+            padding: 22px;
+            margin-bottom: 25px;
+        }
+
+        .tip-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #166534;
+            margin-bottom: 12px;
+        }
+
+        .tip-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .tip-list li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <a href="index.html" class="back-btn">⬅ 메인 대문으로</a>
+        <h1>부산교통공사 면접 복기</h1>
+        <div class="subtitle">전기직 기술 분야 최종 및 상황면접 실전 아카이브</div>
+    </header>
+
+    <!-- 🏢 면접장 배치도 섹션 (image_5dd2e4.png 완벽 매핑) -->
+    <div class="interview-room-section">
+        <div class="room-title">면접장 배치도 (면접관 3 : 지원자 1 단독 다대일)</div>
+        <div class="room-layout">
+            
+            <!-- 상단 면접관 3명 -->
+            <div class="row">
+                <div class="box interviewer">면접관</div>
+                <div class="box interviewer">면접관</div>
+                <div class="box interviewer">면접관</div>
+            </div>
+            
+            <!-- 하단 지원자 (원형) -->
+            <div class="row" style="margin-top: 40px;">
+                <div class="interviewee-circle">지원자</div>
+            </div>
+
+            <!-- 좌측 하단 입구 -->
+            <div class="entrance">입구</div>
+        </div>
+    </div>
+
+    <!-- 💡 실전 TIP 및 분위기 -->
+    <div class="tip-box">
+        <div class="tip-title">💡 면접장 분위기 및 실전 가이드</div>
+        <ul class="tip-list">
+            <li><strong>면접 속도 및 흐름:</strong> 전체적으로 딜레이 없이 꽤 속도감 있게 툭툭 전개되는 편입니다. 압박성 꼬리질문이 거의 들어오지 않는 깔끔한 패턴이었습니다.</li>
+            <li><strong>현장 체감 분위기:</strong> 걱정했던 것에 비해서 면접관분들이 지원자를 편안하게 대우해 주는 느낌을 주어 당황하지 않고 마인드 컨트롤하기 좋았습니다.</li>
+            <li><strong>답변 전략:</strong> 기술직인 만큼 전력 공급 기본 계통 원리와 열차 특성을 정확하게 인지하고, 상황 문항에 대처할 때 매뉴얼과 절차적 근거를 바탕으로 논리정연하게 대답하는 태도가 중요합니다.</li>
+        </ul>
+    </div>
+
+    <!-- ================= 질문 리스트 섹션 ================= -->
+    <div class="section-main-title">⚡ 인성 및 직무 기출 질문</div>
+    <div class="qa-list">
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 01</span> 간단하게 자기소개를 해보세요.</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 02</span> 직장 상사가 본인의 원래 설비 업무와 전혀 무관한 부당하거나 사적인 지시를 내렸을 때 어떻게 대처할 것인가요?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 03</span> 다른 직종이 아닌 부산교통공사 '전기직'에 지원하게 된 구체적인 이유와 계기는 무엇인가요?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 04</span> 부산교통공사에 입사를 준비하는 과정 속에서, 과거보다 더 큰 관심을 가지게 된 특별한 계기나 모멘트가 있을까요?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 05</span> 학교나 단체 생활 중 여러 가지 까다로운 일들이 한 번에 많이 겹쳤던 상황을 경험해 본 적이 있나요? 그렇다면 우선순위를 어떻게 두고 해결해 나갔나요?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 06</span> 도시철도 변전소에서 열차(전동차)까지 전기가 공급되는 전반적인 과정과 차량 내부 설비들로 분배되는 원리에 대해 아는 대로 설명해 보세요.</div>
+            <div class="hint-box">💡 <strong>기술 팁:</strong> 한국전력공사로부터 154kV의 초고압 전력을 수전 받아 변전소에서 전동차용 동력전원(DC 1500V)과 일반 역사용 신호·조명 전원(AC 22.9kV 등)으로 변환합니다. 전동차는 가선(전차선)과 팬터그래프를 통해 DC 1500V를 집전한 뒤, 내부 인버터(VVVF)를 거쳐 주동력원 및 보조동력원(SIV)으로 공급합니다.</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 07</span> 현재 운영되고 있는 도시철도(지하철 차량)에는 전동기가 사용되나요, 아니면 엔진이 사용되나요?</div>
+            <div class="hint-box">💡 <strong>정답 팁:</strong> **전동기(모터)**가 사용됩니다. 가선으로부터 전기 에너지를 공급받아 유도전동기 또는 동기전동기를 회전시켜 기계적 동력을 얻는 구조입니다. 화석 연료를 쓰는 엔진과 달리 소음이 적고 친환경적이며, 지하 터널 내 매연 발생이 없어 도시철도에 최적화되어 있습니다.</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 08</span> 마이스터고에서 배워온 전공 기술을 바탕으로 우리 공사 전기직 무재해 운영에 본인이 어떻게 구체적으로 기여할 수 있을까요?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">질문 09</span> 본인이 학교에서 주 전공으로 배워왔던 하드웨어 분야 외에, 융합적 역량을 위해 개인적으로 관심을 가지고 공부했거나 도전했던 다른 분야가 있나요?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+    </div>
+
+    <!-- ================= 상황면접 섹션 ================= -->
+    <div class="section-main-title">🚨 설비 기술 상황면접 문항</div>
+    <div class="qa-list">
+        <div class="qa-card">
+            <div class="question-title">
+                <span class="question-num" style="background-color: #ef4444;">상황</span> 
+                열차 내부에 객실 전등이나 냉방 설비를 제어하고 전원을 관리하는 보조동력장치(SIV)가 있습니다. 운행 중 이 보조동력장치에 전압강하 현상이 일어난다는 알람 보고를 받았을 때, 기술원으로서 어떻게 설비 점검 업무를 취할 것이며 조치를 한다면 어떤 명확한 근거(매뉴얼 등)를 바탕으로 진행할 것인지 설명해 보세요.
+            </div>
+            <div class="hint-box" style="border-left-color: #ef4444; color: #991b1b; background-color: #fef2f2;">
+                💡 <strong>모범 조치 프로세스 가이드:</strong><br>
+                1. <strong>신속 보고 및 안전 확보:</strong> 종합관제소 및 기관사에게 현황을 즉시 공유하고 승객 대피 상황 여부와 안전조치를 최우선 확인합니다.<br>
+                2. <strong>원인 파악 절차:</strong> SIV 내부 정류부, 인버터 소자 불량, 혹은 전차선 수전 전압 자체의 일시적 변동성인지 계측 모니터 및 에러코드를 체크합니다.<br>
+                3. <strong>대응 조치:</strong> 경미한 하강일 경우 리셋 절차를 밟거나 연장급전 개폐기(ESS)를 투입하여 인접 차량의 보조동력장치로부터 전원을 우회 공급받아 냉방과 전등을 유지시킵니다.<br>
+                4. <strong>명확한 조치 근거:</strong> 임의적 판단이 아닌 공사의 **'도시철도 차량 운행 및 유지보수 표준 매뉴얼'**과 안전 안전 수칙 규정에 기술된 전압 허용 오차 한계 수치를 철저히 준수하여 조치합니다.
+            </div>
+            <pre class="answer-box">【학생 상황 대응 구술 연습 영역】</pre>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
