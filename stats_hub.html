@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스태츠칩팩코리아 면접 아카이브 선택</title>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+
+        body {
+            font-family: 'Pretendard', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            background-attachment: fixed;
+            margin: 0;
+            padding: 80px 20px;
+            color: #0f172a;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh;
+        }
+
+        .hub-container {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+
+        header {
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            margin-bottom: 10px;
+            color: #7c3aed; /* 기존 퍼플 계열 포인트 매칭 */
+        }
+
+        .subtitle {
+            color: #475569;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .choice-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 24px;
+            padding: 35px 25px;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-top: 6px solid #cbd5e1;
+        }
+
+        /* 연도별 상단 보더 포인트 디자인 */
+        .choice-card.year-2026 { border-top-color: #7c3aed; }
+        .choice-card.year-general { border-top-color: #64748b; }
+
+        .choice-card:hover {
+            transform: translateY(-8px);
+            background: #ffffff;
+        }
+        .choice-card.year-2026:hover { box-shadow: 0 20px 40px -10px rgba(124, 58, 237, 0.15); }
+        .choice-card.year-general:hover { box-shadow: 0 20px 40px -10px rgba(100, 116, 139, 0.15); }
+
+        .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin: 0 0 12px 0;
+            letter-spacing: -0.5px;
+            color: #1e293b;
+        }
+
+        p {
+            font-size: 0.92rem;
+            color: #475569;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .btn {
+            display: block;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+            color: #475569;
+            transition: all 0.3s ease;
+        }
+
+        .choice-card.year-2026:hover .btn { background: #7c3aed; color: #fff; border-color: #7c3aed; }
+        .choice-card.year-general:hover .btn { background: #64748b; color: #fff; border-color: #64748b; }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .back-link:hover { color: #0f172a; }
+    </style>
+</head>
+<body>
+
+<div class="hub-container">
+    <header>
+        <h1>🏢 STATS ChipPAC Korea</h1>
+        <div class="subtitle">확인하고자 하는 연도별 실전 면접 복기 자료를 선택하세요.</div>
+    </header>
+
+    <div class="grid">
+        <!-- 2026학년도 복기 링크 -->
+        <a href="stats_2026.html" class="choice-card year-2026">
+            <div>
+                <div class="icon">📅</div>
+                <h2>2026학년도 면접 복기</h2>
+                <p>가장 최신 생산오퍼레이터(제조) 직무 실전 면접 기출 및 전형 트렌드 데이터 수록</p>
+            </div>
+            <span class="btn">2026 자료 보기</span>
+        </a>
+
+        <!-- 기존/통합 복기 링크 -->
+        <a href="stats.html" class="choice-card year-general">
+            <div>
+                <div class="icon">📝</div>
+                <h2>기존 면접 가이드</h2>
+                <p>스태츠칩팩코리아 고교 실습생 면접 질문 및 인성 위주 표준 족보 워크북</p>
+            </div>
+            <span class="btn">통합 자료 보기</span>
+        </a>
+    </div>
+
+    <a href="index.html" class="back-link">← 메인 대시보드로 돌아가기</a>
+</div>
+
+</body>
+</html>
