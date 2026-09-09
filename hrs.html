@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRS코리아 면접 복기</title>
+    <style>
+        :root {
+            --primary-color: #0369a1; /* 신뢰감 있는 스카이블루/네이비 */
+            --accent-color: #0ea5e9;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #222;
+        }
+
+        body {
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 40px 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid #e1e4e6;
+        }
+
+        header {
+            position: relative;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 0;
+            top: 10px;
+            color: #555;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .back-btn:hover {
+            color: var(--primary-color);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.3rem;
+            margin: 0 0 10px 0;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        /* 🏢 배치도 레이아웃 (면접관 2 : 지원자 3 다대다 구조) */
+        .interview-room-section {
+            background: #fff;
+            border: 1px solid #e1e4e6;
+            border-radius: 8px;
+            padding: 30px 20px;
+            margin-bottom: 35px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+        }
+
+        .room-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #111;
+        }
+
+        .room-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            max-width: 650px;
+            margin: 0 auto;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            gap: 25px;
+        }
+
+        .box {
+            border: 2px solid var(--border-color);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .interviewer {
+            width: 110px;
+            height: 55px;
+            background-color: #f0f4f8;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .main-table {
+            width: 90%;
+            height: 80px;
+            border: 2px solid var(--border-color);
+            background: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: bold;
+            border-radius: 6px;
+        }
+
+        .interviewee {
+            width: 110px;
+            height: 55px;
+            background-color: #fffdf0;
+            color: #b78103;
+            border-color: #b78103;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .info-table tr {
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .info-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .info-table th {
+            width: 25%;
+            text-align: left;
+            padding: 12px 10px;
+            font-weight: 700;
+            color: #334155;
+            font-size: 0.95rem;
+        }
+
+        .info-table td {
+            width: 75%;
+            padding: 12px 10px;
+            color: #0f172a;
+            font-size: 0.95rem;
+        }
+
+        .tip-box {
+            background-color: #f0f9f4;
+            border: 1px solid #ccecdb;
+            border-radius: 8px;
+            padding: 22px;
+            margin-bottom: 25px;
+        }
+
+        .tip-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #00854a;
+            margin-bottom: 12px;
+        }
+
+        .tip-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .tip-list li {
+            margin-bottom: 8px;
+        }
+
+        .section-main-title {
+            font-size: 1.4rem;
+            color: #fff;
+            background-color: var(--primary-color);
+            padding: 12px 20px;
+            font-weight: 700;
+            border-radius: 8px;
+            margin: 45px 0 25px 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .qa-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .qa-card {
+            background: #ffffff;
+            border: 1px solid #e1e4e6;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .question-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 12px;
+        }
+
+        .question-num {
+            background: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.85rem;
+            margin-right: 12px;
+        }
+
+        .question-num.common {
+            background: #0284c7;
+        }
+
+        .question-num.personal {
+            background: #7c3aed;
+        }
+
+        .answer-box {
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #ccd1d9;
+            padding: 14px;
+            margin: 0;
+            white-space: pre-wrap;
+            color: #555;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <a href="index.html" class="back-btn">⬅ 메인 대시보드로</a>
+        <h1>HRS코리아 실전 면접 복기</h1>
+        <div class="subtitle">정밀 전자 커넥터 제조 기업 다대다 면접 기출 아카이브 워크북</div>
+    </header>
+
+    <!-- 면접 개요 요약 정보 테이블 -->
+    <div class="interview-room-section" style="padding: 20px 25px; margin-bottom: 25px;">
+        <table class="info-table">
+            <tr>
+                <th>지원 기업 / 근무지</th>
+                <td>HRS코리아 (히로세코리아) / <strong>경기도 시흥 사업장</strong></td>
+            </tr>
+            <tr>
+                <th>면접 형태 및 시간</th>
+                <td><strong>지원자 3명 : 면접관 2명</strong> (다대다 대면 면접) / 약 30분 소요</td>
+            </tr>
+            <tr>
+                <th>면접 시작 전 분위기</th>
+                <td>면접관분들이 긴장을 풀어주기 위해 "오늘 아침 몇 시에 일어났는지", "무엇을 타고 왔는지", "누구와 함께 왔는지" 등 가벼운 일상 질문(Ice Breaking)으로 시작함</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 면접장 배치도 영역 -->
+    <div class="interview-room-section">
+        <div class="room-title">면접장 배치도 (지원자 3 : 면접관 2 대면 레이아웃)</div>
+        <div class="room-layout">
+            <div class="row">
+                <div class="box interviewer">면접관 1</div>
+                <div class="box interviewer">면접관 2</div>
+            </div>
+            
+            <div class="main-table">중앙 대면 면접 테이블</div>
+            
+            <div class="row">
+                <div class="box interviewee">지원자 A</div>
+                <div class="box interviewee">지원자 B (본인)</div>
+                <div class="box interviewee">지원자 C</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 분위기 및 특이사항 가이드 영역 -->
+    <div class="tip-box">
+        <div class="tip-title">💡 면접관 평가 성향 & 특이사항 체크포인트</div>
+        <ul class="tip-list">
+            <li><strong>지방(부산) 출신 학생의 타지 적응력 중점 검증:</strong> 사업장이 경기도 시흥에 위치해 있어, 가족과 떨어져 생활하는 것에 대한 부담감, 부모님의 동의 여부, 기숙사 생활 적응력을 매우 집요하게 확인합니다.</li>
+            <li><strong>현장 근무 체력 및 근속 의지:</strong> 교대근무와 장시간 서서 일하는 근무 환경에 버틸 수 있는 체력과 확실한 취업 의지(대학 진학 대신 빠른 취업을 결심한 계기)를 체크합니다.</li>
+            <li><strong>기회 부여형 온건한 면접 태도 (특이 사례):</strong> 한 타교 지원자가 자소서를 양식 칸에 맞춰야 하는 줄 알고 2~3줄로 매우 짧게 써서 제출했으나, 면접관이 이유를 친절히 묻고 "금요일까지 다시 길게 써서 제출할 기회"를 줄 정도로 지원자의 성실성을 배려해 주는 따뜻한 면접 분위기였습니다.</li>
+        </ul>
+    </div>
+
+    <!-- ================= 🗣️ 1. 공통 질문 섹션 ================= -->
+    <div class="section-main-title" style="background-color: #0284c7;">🗣️ 1. 실전 공통 질문 (전체 지원자 공통 질의)</div>
+
+    <div class="qa-list">
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num common">공통 01</span> 부모님께서는 현재 어떤 직업에 종사하고 계시나요?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num common">공통 02</span> 연고지가 아닌 먼 타지에 있는 회사에 지원하게 된 특별한 이유가 있나요? 그리고 타지 취업을 지원한다고 했을 때 부모님께서는 뭐라고 말씀하셨나요?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num common">공통 03</span> 우리 회사는 경기도 시흥에 있어서 본인 집(부산)과 거리가 상당히 먼데, 실제로 생활하고 근무하는 데 정말 괜찮겠습니까?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num common">공통 04</span> 제조 생산 현장은 주야 교대근무와 함께 서서 일해야 하는 근무 환경이라 체력적으로 힘들 텐데, 본인은 잘 적응할 자신이 있나요?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num common">공통 05</span> 향후 군 복무(입대) 계획은 어떻게 세우고 있나요? (육군 / 해군 / 공군 등 희망 복무 분야)</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num common">공통 06</span> 고등학교 졸업 후 대학 진학에 대한 생각은 없었나요? 남들보다 일찍 곧바로 취업을 결심하게 된 명확한 동기는 무엇인가요?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+    </div>
+
+
+    <!-- ================= 🎯 2. 개별 질문 및 마무리 섹션 ================= -->
+    <div class="section-main-title" style="background-color: #7c3aed;">🎯 2. 지원자별 개별 질문 & 마무리</div>
+
+    <div class="qa-list">
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num personal">본인 개별</span> HRS코리아에 최종 입사하게 된다면, 회사 안에서 반드시 이루고 싶은 본인만의 직무적 목표나 꿈은 무엇인가요?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num personal">타 지원자 A</span> (자소서 기반) 해외 연수 경험이 있다고 적혀있는데, 어떤 선발 과정을 거쳐서 다녀오게 되었으며 현지에 가서는 구체적으로 어떤 활동들을 수행했나요?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num personal">타 지원자 B</span> (전기 전공자) 학교에서는 전기를 전공했는데, 우리 회사에 입사해서 맡게 될 생산 업무와는 분야가 다소 다를 수 있습니다. 배운 전공과 다른 현장 업무에 어떻게 적응해 나갈 생각인가요?</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+
+        <div class="qa-card">
+            <div class="question-title"><span class="question-num">마무리</span> 모든 질문이 끝났습니다. 마지막으로 꼭 하고 싶은 말이나, 회사에 대해 궁금한 점이 있다면 자유롭게 말씀해 보세요.</div>
+            <pre class="answer-box">【답변 작성 영역】</pre>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
