@@ -157,11 +157,24 @@ body {
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
 }
+.list-card {
+    position: relative;
+}
+.list-card::before {
+    content: ''; position: absolute; left: 0; top: 12%; bottom: 12%;
+    width: 4px; border-radius: 0 4px 4px 0;
+    background: linear-gradient(180deg, var(--brand), var(--brand-2));
+    opacity: 0; transition: opacity .28s;
+}
 .list-card:hover {
     background: var(--panel-hover);
-    border-color: rgba(96,165,250,.35);
-    transform: translateY(-2px);
+    border-color: var(--brand);
+    transform: translateY(-4px) scale(1.012);
+    box-shadow: 0 16px 34px -14px var(--brand);
 }
+.list-card:hover::before { opacity: 1; }
+.list-card:hover .ico { transform: scale(1.06); box-shadow: 0 8px 20px -5px var(--brand); }
+.list-card .ico { transition: all .28s cubic-bezier(0.16,1,0.3,1); }
 .list-card .ico {
     width: 48px; height: 48px; flex: none; border-radius: 13px;
     display: flex; align-items: center; justify-content: center;
@@ -178,8 +191,21 @@ body {
     background: rgba(255,255,255,.06); border: 1px solid var(--line);
     padding: 3px 9px; border-radius: 6px;
 }
-.list-card .arr { margin-left: auto; color: #475569; font-size: 1.1rem; transition: .25s; align-self: center; }
-.list-card:hover .arr { color: var(--brand); transform: translateX(4px); }
+.list-card .arr {
+    margin-left: auto; align-self: center;
+    width: 34px; height: 34px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--brand-soft); color: var(--brand);
+    font-size: 1.15rem; font-weight: 900;
+    border: 1.5px solid transparent;
+    transition: all .28s cubic-bezier(0.16,1,0.3,1);
+    flex: none;
+}
+.list-card:hover .arr {
+    background: linear-gradient(140deg, var(--brand), var(--brand-2));
+    color: #fff; transform: translateX(3px) scale(1.08);
+    box-shadow: 0 6px 16px -4px var(--brand);
+}
 
 /* 상태 배지 */
 .badge {
@@ -467,3 +493,41 @@ pre.answer-box { font-family: inherit; }
 
 /* samsung_display 전용: 하위 질문 텍스트 */
 .sub-q-text { display:block; margin-top:8px; font-size:0.9rem; color: var(--text-dim); font-weight:500; }
+
+
+/* ============================================================
+   학교 로고 (헤더)
+   ============================================================ */
+.brand-head {
+    display: flex; align-items: center; gap: 20px;
+    position: relative; z-index: 2;
+}
+.brand-logo {
+    width: 76px; height: 76px; flex: none;
+    border-radius: 50%;
+    background: #fff; padding: 6px;
+    box-shadow: 0 6px 20px -6px rgba(0,0,0,.5);
+}
+.brand-text { flex: 1; }
+.hero .brand-text .kicker { margin-bottom: 10px; }
+.hero .brand-text h1 { margin: 0; }
+@media (max-width: 560px) {
+    .brand-head { flex-direction: column; text-align: center; gap: 14px; }
+    .brand-logo { width: 64px; height: 64px; }
+}
+/* 프린트 시 로고 흰 배경 유지 */
+@media print { .brand-logo { box-shadow: none; border: 1px solid #ccc; } }
+
+/* 상세/허브 페이지 헤더 우측 상단에 로고 워터마크 (CSS만으로 자동 삽입) */
+.page-head, .container > header {
+    background-image:
+        radial-gradient(130% 130% at 0% 0%, rgba(37,99,235,.3) 0%, rgba(15,23,41,0) 60%),
+        url("logo.png");
+    background-repeat: no-repeat, no-repeat;
+    background-position: 0 0, right 26px center;
+    background-size: auto, 60px 60px;
+}
+/* 로고가 흰 원이라 어두운 헤더에서도 잘 보이도록 살짝 밝은 원 배경 부여는 이미지 자체가 흰 배경이라 불필요 */
+@media (max-width: 560px) {
+    .page-head, .container > header { background-size: auto, 44px 44px; background-position: 0 0, right 16px top 16px; }
+}
