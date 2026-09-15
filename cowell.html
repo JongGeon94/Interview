@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>코웰정밀(주) 2026학년도 면접 복기</title>
+    <style>
+        :root {
+            --primary-color: #0f766e; /* 코웰정밀 시그니처 딥틸(정밀가공) */
+            --accent-color: #0891b2;
+            --elec-color: #b45309; /* 전기직 구분 색상 */
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #222;
+        }
+        body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background-color: var(--bg-color); margin: 0; padding: 40px 20px; color: #333; line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; background: var(--card-bg); padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #e1e4e6; }
+        header { position: relative; margin-bottom: 40px; text-align: center; }
+        .back-btn { position: absolute; left: 0; top: 10px; color: #555; text-decoration: none; font-weight: bold; font-size: 0.95rem; transition: color 0.2s; }
+        .back-btn:hover { color: var(--primary-color); }
+        h1 { color: var(--primary-color); font-size: 2.3rem; margin: 0 0 10px 0; font-weight: 800; }
+        .subtitle { font-size: 1.1rem; color: #666; margin-bottom: 25px; }
+        .interview-room-section { background: #fff; border: 1px solid #e1e4e6; border-radius: 8px; padding: 30px 20px; margin-bottom: 35px; box-shadow: 0 2px 6px rgba(0,0,0,0.01); }
+        .room-title { font-size: 1.15rem; font-weight: bold; margin-bottom: 20px; text-align: center; color: #111; }
+        .room-layout { display: flex; flex-direction: column; align-items: center; gap: 18px; max-width: 560px; margin: 0 auto; }
+        .row { display: flex; justify-content: center; width: 100%; gap: 30px; flex-wrap: wrap; }
+        .box { border: 2px solid var(--border-color); background: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9rem; border-radius: 4px; text-align: center; }
+        .interviewer { width: 105px; height: 52px; background-color: #f0f4f8; color: var(--primary-color); border-color: var(--primary-color); }
+        .main-table { width: 80%; height: 55px; border: 2px solid var(--border-color); background: #fafafa; display: flex; align-items: center; justify-content: center; color: #666; font-weight: bold; border-radius: 6px; font-size: 0.9rem; }
+        .interviewee { width: 105px; height: 52px; background-color: #fffdf0; color: #b78103; border-color: #b78103; }
+        .info-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .info-table tr { border-bottom: 1px solid #e2e8f0; }
+        .info-table tr:last-child { border-bottom: none; }
+        .info-table th { width: 25%; text-align: left; padding: 12px 10px; font-weight: 700; color: #334155; font-size: 0.95rem; }
+        .info-table td { width: 75%; padding: 12px 10px; color: #0f172a; font-size: 0.95rem; }
+        .section-main-title { font-size: 1.4rem; color: #fff; background-color: var(--primary-color); padding: 12px 20px; font-weight: 700; border-radius: 8px; margin: 45px 0 25px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 10px; }
+        .section-main-title.elec { background-color: var(--elec-color); }
+        .job-badge { display: inline-block; font-size: 0.8rem; font-weight: 700; background: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 50px; }
+        .qa-list { display: flex; flex-direction: column; gap: 18px; }
+        .qa-card { background: #ffffff; border: 1px solid #e1e4e6; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+        .question-title { font-size: 1.08rem; font-weight: 700; color: #222; margin-bottom: 12px; }
+        .question-num { background: var(--primary-color); color: white; border-radius: 4px; padding: 2px 8px; font-size: 0.85rem; margin-right: 12px; }
+        .question-num.elec { background: var(--elec-color); }
+        .sub-hint { display: block; font-size: 0.88rem; color: #64748b; font-weight: 500; margin-top: 8px; padding-left: 2px; }
+        .answer-box { background: #f8f9fa; border-radius: 6px; border-left: 4px solid #ccd1d9; padding: 14px; margin: 0; white-space: pre-wrap; color: #555; font-size: 0.95rem; }
+        .tip-box { background-color: #f0f9f4; border: 1px solid #ccecdb; border-radius: 8px; padding: 22px; margin-bottom: 25px; }
+        .tip-title { font-size: 1.15rem; font-weight: 700; color: #00854a; margin-bottom: 12px; }
+        .tip-list { margin: 0; padding-left: 20px; }
+        .tip-list li { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <a href="index.html" class="back-btn">⬅ 메인 대시보드로</a>
+        <h1>코웰정밀(주) 2026년도 면접 복기</h1>
+        <div class="subtitle">정밀가공 · 전기 직종 고졸 채용 실전 기출 아카이브 워크북</div>
+    </header>
+
+    <!-- 면접 개요 요약 정보 테이블 -->
+    <div class="interview-room-section" style="padding: 20px 25px; margin-bottom: 25px;">
+        <table class="info-table">
+            <tr><th>지원 기업</th><td>코웰정밀(주)</td></tr>
+            <tr><th>모집 직종</th><td><strong>가공직 · 전기직</strong></td></tr>
+            <tr><th>면접 일자</th><td>2026. 05. 12. (화) 오전 10:00 ~</td></tr>
+            <tr><th>면접 장소</th><td>코웰정밀(주) 대회의실</td></tr>
+            <tr><th>이동 경로 참고</th><td>이경민 부장님 승용차 이용</td></tr>
+            <tr><th>복기 제공</th><td>3404 김성길 · 3407 성상민 (가공직) / 3510 심건희 (전기직)</td></tr>
+        </table>
+    </div>
+
+    <!-- 분위기 총평 -->
+    <div class="tip-box">
+        <div class="tip-title">💡 면접장 분위기 총평</div>
+        <ul class="tip-list">
+            <li><strong>전반적으로 편안한 분위기:</strong> 면접관들이 웃으면서 질문을 해주셔서 긴장했던 마음이 풀렸고, 편한 마음으로 면접에 임할 수 있었다고 합니다.</li>
+            <li><strong>재미있게 배려해 주심:</strong> 생각했던 것보다 편하게 대해주셔서, 오히려 "괜히 긴장했다"는 생각이 들 정도였다고 합니다.</li>
+        </ul>
+    </div>
+
+    <!-- ================= 🔧 가공직 섹션 ================= -->
+    <div class="section-main-title">🔧 가공직 면접 복기 <span class="job-badge">지원자 2명 : 면접관 2명 · 30분</span></div>
+
+    <div class="interview-room-section">
+        <div class="room-title">면접장 배치도 (지원자 2 : 면접관 2)</div>
+        <div class="room-layout">
+            <div class="row"><div class="box interviewer">면접관 1</div><div class="box interviewer">면접관 2</div></div>
+            <div class="main-table">대회의실 중앙 테이블</div>
+            <div class="row"><div class="box interviewee">지원자 1</div><div class="box interviewee">지원자 2</div></div>
+        </div>
+    </div>
+
+    <div class="qa-list">
+        <div class="qa-card"><div class="question-title"><span class="question-num">가공 01</span> 본인 소개를 해보세요.</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">가공 02</span> 부산자동차마이스터고등학교에 입학하게 된 계기가 무엇인가요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">가공 03</span> 학교 실습장의 기계 브랜드가 무엇인가요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">가공 04</span> 선반과 MCT 중 선호하는 쪽이 무엇인가요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">가공 05</span> 산업기사 자격증을 취득할 때 어떤 프로그램을 사용했나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">가공 06</span> CNC 가공을 할 수 있나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">가공 07</span> 산업기사 공부는 어떻게 했나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">가공 08</span> 대학 진학을 희망하나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">가공 09</span> 집에서 출퇴근은 어떻게 할 계획인가요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">가공 10</span> 업무가 힘이 들 텐데 해낼 수 있을까요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">가공 11</span> 근무는 언제까지 할 수 있나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">가공 12</span> 마지막으로 하고 싶은 말이 있나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+    </div>
+
+    <!-- ================= ⚡ 전기직 섹션 ================= -->
+    <div class="section-main-title elec">⚡ 전기직 면접 복기 <span class="job-badge">지원자 1명 : 면접관 1명 · 20분</span></div>
+
+    <div class="interview-room-section">
+        <div class="room-title">면접장 배치도 (지원자 1 : 면접관 1)</div>
+        <div class="room-layout">
+            <div class="row"><div class="box interviewer">면접관</div></div>
+            <div class="main-table">대회의실 중앙 테이블</div>
+            <div class="row"><div class="box interviewee">지원자</div></div>
+        </div>
+    </div>
+
+    <div class="qa-list">
+        <div class="qa-card"><div class="question-title"><span class="question-num elec">전기 01</span> 본인 소개를 해보세요.</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num elec">전기 02</span> 코웰정밀(주)가 어떤 회사인지 알고 있을까요?<span class="sub-hint">💡 대표님 존함, 생산품 등을 함께 확인함.</span></div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num elec">전기 03</span> 학교생활은 어떤가요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num elec">전기 04</span> 생산자동화과정에서 배우는 것은 어떤 것이 있나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num elec">전기 05</span> 업무 난이도가 있는데 잘 근무할 수 있을까요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num elec">전기 06</span> 출·퇴근은 어떻게 할 계획인가요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num elec">전기 07</span> 자취할 계획은 있을까요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num elec">전기 08</span> 마지막으로 하고 싶은 말이 있다면 해보세요.</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+    </div>
+
+</div>
+
+</body>
+</html>
