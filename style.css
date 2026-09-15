@@ -1,0 +1,469 @@
+/* ============================================================
+   부산자동차마이스터고 취업지원부 · 면접 복기 아카이브
+   공통 디자인 시스템 — "Deep Glass" v1.0
+   모든 페이지에서 <link rel="stylesheet" href="style.css"> 로 연결
+   ============================================================ */
+
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+
+:root {
+    /* 배경 */
+    --bg-deep:      #0b1220;
+    --bg-deep-2:    #0f1729;
+    --panel:        rgba(255, 255, 255, 0.045);
+    --panel-hover:  rgba(96, 165, 250, 0.10);
+    --panel-solid:  #131c30;
+    --line:         rgba(255, 255, 255, 0.08);
+    --line-strong:  rgba(255, 255, 255, 0.14);
+
+    /* 텍스트 */
+    --text:         #eef2f9;
+    --text-mid:     #aeb9cc;
+    --text-dim:     #8493ab;
+
+    /* 포인트 컬러 (기업별 오버라이드용 기본값) */
+    --brand:        #3b82f6;
+    --brand-2:      #2563eb;
+    --brand-soft:   rgba(59, 130, 246, 0.15);
+
+    --ok:           #34d399;
+    --warn:         #fbbf24;
+    --bad:          #f87171;
+    --pt:           #fb923c;
+
+    --radius:       16px;
+    --radius-lg:    22px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    background:
+        radial-gradient(120% 90% at 0% 0%, #16244a 0%, rgba(22,36,74,0) 45%),
+        radial-gradient(120% 90% at 100% 0%, #1a2f5c 0%, rgba(26,47,92,0) 40%),
+        linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-deep-2) 100%);
+    background-attachment: fixed;
+    color: var(--text);
+    margin: 0;
+    padding: 60px 20px;
+    line-height: 1.6;
+    letter-spacing: -0.2px;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+}
+
+/* ---------- 레이아웃 ---------- */
+.container, .hub-container, .wrap {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.wrap-wide { max-width: 1200px; margin: 0 auto; }
+
+/* ---------- 헤더 / 히어로 ---------- */
+.hero {
+    background: radial-gradient(130% 130% at 0% 0%, rgba(37,99,235,.35) 0%, rgba(15,23,41,0) 60%),
+                var(--panel-solid);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 40px 36px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+.hero::after {
+    content: '';
+    position: absolute; right: -60px; top: -60px;
+    width: 220px; height: 220px; border-radius: 50%;
+    background: var(--brand); opacity: .12; filter: blur(50px);
+}
+.kicker {
+    display: inline-block;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.5px;
+    color: #bfd3f5;
+    background: rgba(255,255,255,.08);
+    border: 1px solid var(--line-strong);
+    padding: 6px 14px; border-radius: 50px;
+    margin-bottom: 16px;
+}
+.hero h1 {
+    font-size: 2.4rem; font-weight: 900; letter-spacing: -1.2px;
+    margin: 0 0 10px; color: #fff; line-height: 1.2;
+}
+.hero .subtitle { color: var(--text-mid); font-size: 1.05rem; margin: 0; font-weight: 500; }
+
+/* 상세 페이지 상단 헤더 (뒤로가기 포함) */
+.page-head {
+    position: relative;
+    margin-bottom: 30px;
+    padding: 34px 34px 30px;
+    background: radial-gradient(130% 130% at 0% 0%, rgba(37,99,235,.3) 0%, rgba(15,23,41,0) 60%), var(--panel-solid);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    overflow: hidden;
+}
+.page-head::after {
+    content:''; position:absolute; right:-50px; bottom:-70px;
+    width:200px; height:200px; border-radius:50%;
+    background: var(--brand); opacity:.14; filter: blur(50px);
+}
+.page-head h1 { font-size: 2rem; font-weight: 900; letter-spacing: -1px; margin: 0 0 8px; color:#fff; }
+.page-head .subtitle { color: var(--text-mid); font-size: 1rem; margin: 0; font-weight: 500; }
+.back-btn {
+    position: absolute; left: 22px; top: 22px;
+    color: var(--text-dim); text-decoration: none;
+    font-weight: 700; font-size: 0.9rem; z-index: 2;
+    transition: color .2s;
+}
+.back-btn:hover { color: #fff; }
+
+/* ---------- 섹션 구분 라벨 ---------- */
+.section-main-title {
+    font-size: 1.25rem; font-weight: 800; color: #fff;
+    margin: 40px 0 20px; letter-spacing: -.5px;
+    display: flex; align-items: center; gap: 12px;
+}
+.section-main-title::before {
+    content: ''; width: 6px; height: 22px; border-radius: 3px;
+    background: linear-gradient(180deg, var(--brand), var(--brand-2));
+}
+.section-main-title.pt::before { background: linear-gradient(180deg,#fb923c,#ea580c); }
+.section-main-title .job-badge {
+    font-size: 0.78rem; font-weight: 700; color: var(--text-mid);
+    background: var(--panel); border: 1px solid var(--line);
+    padding: 4px 12px; border-radius: 50px;
+}
+
+/* ---------- 카테고리 헤딩 ---------- */
+.category-title {
+    font-size: 0.78rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--text-dim);
+    margin: 40px 0 16px; padding-left: 2px;
+}
+
+/* ---------- 아이콘 리스트 (대문·허브 카드) ---------- */
+.list-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 720px) { .list-grid.two { grid-template-columns: repeat(2, 1fr); } }
+
+.list-card {
+    display: flex; align-items: center; gap: 15px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    text-decoration: none; color: inherit;
+    transition: all .25s ease;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+.list-card:hover {
+    background: var(--panel-hover);
+    border-color: rgba(96,165,250,.35);
+    transform: translateY(-2px);
+}
+.list-card .ico {
+    width: 48px; height: 48px; flex: none; border-radius: 13px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.35rem; color: #fff;
+    background: linear-gradient(140deg, var(--brand), var(--brand-2));
+    box-shadow: 0 6px 16px -6px var(--brand);
+}
+.list-card .meta { flex: 1; min-width: 0; }
+.list-card .tt { font-size: 1.08rem; font-weight: 800; margin: 0; color: var(--text); }
+.list-card .dd { font-size: 0.85rem; color: var(--text-dim); margin: 3px 0 0; }
+.list-card .badges { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+.chip {
+    font-size: 0.72rem; font-weight: 600; color: var(--text-mid);
+    background: rgba(255,255,255,.06); border: 1px solid var(--line);
+    padding: 3px 9px; border-radius: 6px;
+}
+.list-card .arr { margin-left: auto; color: #475569; font-size: 1.1rem; transition: .25s; align-self: center; }
+.list-card:hover .arr { color: var(--brand); transform: translateX(4px); }
+
+/* 상태 배지 */
+.badge {
+    display: inline-block; font-size: 0.68rem; font-weight: 800;
+    padding: 4px 10px; border-radius: 50px;
+    background: var(--brand-soft); color: #93c5fd;
+    border: 1px solid rgba(59,130,246,.25);
+}
+.badge.interview { background: rgba(52,211,153,.13); color: #6ee7b7; border-color: rgba(52,211,153,.25); }
+.badge.ai        { background: rgba(167,139,250,.14); color: #c4b5fd; border-color: rgba(167,139,250,.28); }
+
+/* ---------- 개요 테이블 ---------- */
+.panel {
+    background: var(--panel-solid);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px 26px;
+    margin-bottom: 26px;
+}
+.info-table { width: 100%; border-collapse: collapse; }
+.info-table tr { border-bottom: 1px solid var(--line); }
+.info-table tr:last-child { border-bottom: none; }
+.info-table th {
+    width: 26%; text-align: left; padding: 12px 10px;
+    font-weight: 700; color: var(--text-dim); font-size: 0.92rem; vertical-align: top;
+}
+.info-table td { padding: 12px 10px; color: var(--text); font-size: 0.95rem; }
+.info-table td strong { color: #fff; }
+
+/* ---------- 면접장 배치도 ---------- */
+.room-title { font-size: 1.05rem; font-weight: 700; text-align: center; color: var(--text); margin-bottom: 20px; }
+.room-block { margin-bottom: 28px; }
+.room-block:last-child { margin-bottom: 0; }
+.room-tag { display: inline-block; font-size: 0.82rem; font-weight: 700; padding: 4px 14px; border-radius: 50px; margin-bottom: 16px; }
+.room-tag.type-in { background: rgba(59,130,246,.15); color: #93c5fd; border: 1px solid rgba(59,130,246,.3); }
+.room-tag.type-pt { background: rgba(251,146,60,.15); color: #fdba74; border: 1px solid rgba(251,146,60,.3); }
+.room-layout { display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 600px; margin: 0 auto; }
+.row { display: flex; justify-content: center; width: 100%; gap: 20px; flex-wrap: wrap; }
+.box {
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.88rem; border-radius: 8px; text-align: center;
+}
+.interviewer { width: 104px; height: 50px; background: rgba(59,130,246,.12); color: #bfdbfe; border: 1.5px solid rgba(59,130,246,.4); }
+.interviewee { width: 104px; height: 50px; background: rgba(251,191,36,.10); color: #fcd34d; border: 1.5px solid rgba(251,191,36,.35); }
+.main-table  { width: 82%; height: 52px; background: rgba(255,255,255,.03); color: var(--text-dim); border: 1.5px dashed var(--line-strong); border-radius: 10px; }
+.screen { width: 130px; height: 40px; background: rgba(255,255,255,.04); color: var(--text-dim); border: 1.5px dashed var(--line-strong); font-size: 0.82rem; }
+
+/* ---------- 질문(QA) 카드 ---------- */
+.qa-list { display: flex; flex-direction: column; gap: 14px; }
+.qa-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px;
+    transition: border-color .25s;
+}
+.qa-card:hover { border-color: var(--line-strong); }
+.question-title { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 12px; line-height: 1.5; }
+.question-num {
+    display: inline-block;
+    background: linear-gradient(140deg, var(--brand), var(--brand-2));
+    color: #fff; border-radius: 6px; padding: 2px 9px;
+    font-size: 0.82rem; font-weight: 800; margin-right: 12px;
+}
+.question-num.pt { background: linear-gradient(140deg,#fb923c,#ea580c); }
+.tag-common {
+    display: inline-block; background: rgba(129,140,248,.15); color: #c7d2fe;
+    font-size: 0.72rem; font-weight: 700; padding: 2px 9px; border-radius: 5px;
+    border: 1px solid rgba(129,140,248,.3); margin-left: 6px; vertical-align: middle;
+}
+.sub-hint { display: block; font-size: 0.86rem; color: var(--text-dim); font-weight: 500; margin-top: 10px; }
+.answer-box {
+    background: rgba(0,0,0,.22);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--brand);
+    border-radius: 8px; padding: 14px; margin: 12px 0 0;
+    white-space: pre-wrap; color: var(--text-mid); font-size: 0.94rem;
+}
+.passage-box {
+    background: rgba(0,0,0,.22); border: 1px solid var(--line);
+    border-radius: 8px; padding: 15px; margin-bottom: 14px;
+    color: var(--text-mid); font-size: 0.95rem; white-space: pre-wrap;
+}
+
+/* ---------- 팁 박스 ---------- */
+.tip-box {
+    background: rgba(52,211,153,.07);
+    border: 1px solid rgba(52,211,153,.22);
+    border-radius: 14px; padding: 22px; margin-bottom: 24px;
+}
+.tip-box.warn { background: rgba(251,146,60,.08); border-color: rgba(251,146,60,.25); }
+.tip-title { font-size: 1.1rem; font-weight: 700; color: #6ee7b7; margin-bottom: 12px; }
+.tip-box.warn .tip-title { color: #fdba74; }
+.tip-list { margin: 0; padding-left: 20px; color: var(--text-mid); }
+.tip-list li { margin-bottom: 8px; }
+.tip-list strong, .tip-box strong { color: var(--text); }
+
+/* ---------- 선택지 / 채점 (필기 페이지) ---------- */
+.options-list { list-style: none; padding: 0; margin: 14px 0 0; }
+.options-list li {
+    padding: 11px 15px; background: var(--panel); border: 1px solid var(--line);
+    margin-bottom: 8px; border-radius: 8px; font-size: 0.94rem;
+    display: flex; align-items: center; cursor: pointer; transition: .2s; color: var(--text-mid);
+}
+.options-list li:hover { background: var(--panel-hover); }
+.options-list input[type="radio"] { margin-right: 12px; width: 16px; height: 16px; cursor: pointer; accent-color: var(--brand); }
+.result-badge { display: none; font-size: 0.82rem; font-weight: 700; padding: 3px 10px; border-radius: 5px; margin-left: auto; }
+.qa-card.correct-card { border-color: rgba(52,211,153,.5); background: rgba(52,211,153,.08); }
+.qa-card.wrong-card   { border-color: rgba(248,113,113,.5); background: rgba(248,113,113,.08); }
+.qa-card.correct-card .result-badge.correct { display: inline-block; background: #10b981; color: #fff; }
+.qa-card.wrong-card   .result-badge.wrong   { display: inline-block; background: #ef4444; color: #fff; }
+.feedback-box { display: none; margin-top: 14px; padding: 14px 18px; background: rgba(52,211,153,.1); border: 1px solid rgba(52,211,153,.3); border-radius: 8px; font-size: 0.94rem; color: #a7f3d0; }
+.qa-card.wrong-card .feedback-box { display: block; }
+.score-board {
+    display: none; background: linear-gradient(135deg,#1e293b,#0f172a);
+    border: 1px solid var(--line); color: #fff; padding: 30px; border-radius: 16px;
+    text-align: center; margin-bottom: 26px;
+}
+.score-num { font-size: 2.8rem; color: #60a5fa; font-weight: 900; }
+.action-container { text-align: center; margin: 36px 0; }
+.submit-btn {
+    background: linear-gradient(140deg, var(--brand), var(--brand-2)); color: #fff; border: none;
+    padding: 16px 40px; font-size: 1.05rem; font-weight: 800; border-radius: 10px; cursor: pointer;
+    box-shadow: 0 8px 22px -8px var(--brand); transition: .2s;
+}
+.submit-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -8px var(--brand); }
+
+/* ---------- 하단 버튼 / 링크 ---------- */
+.btn-home, .back-link {
+    display: inline-block; background: var(--panel); color: var(--text);
+    border: 1px solid var(--line-strong); padding: 13px 28px; border-radius: 12px;
+    text-decoration: none; font-weight: 700; font-size: 0.92rem; transition: .25s;
+}
+.btn-home:hover, .back-link:hover { background: var(--panel-hover); border-color: var(--brand); }
+.center { text-align: center; margin-top: 36px; }
+
+footer {
+    text-align: center; margin-top: 60px; padding-top: 30px;
+    border-top: 1px solid var(--line);
+    color: var(--text-dim); font-size: 0.88rem; font-weight: 500;
+}
+
+/* ============================================================
+   기업별 포인트 컬러 — body 또는 상위요소에 class 부여 시 오버라이드
+   예: <body class="theme-korail">
+   ============================================================ */
+.theme-korail { --brand:#3b82f6; --brand-2:#1d4ed8; --brand-soft:rgba(59,130,246,.15); }
+.theme-kai    { --brand:#38bdf8; --brand-2:#0284c7; --brand-soft:rgba(56,189,248,.15); }
+.theme-cowell { --brand:#2dd4bf; --brand-2:#0d9488; --brand-soft:rgba(45,212,191,.15); }
+.theme-db     { --brand:#3b82f6; --brand-2:#2563eb; --brand-soft:rgba(59,130,246,.15); }
+.theme-stats  { --brand:#a78bfa; --brand-2:#7c3aed; --brand-soft:rgba(167,139,250,.15); }
+.theme-amkr   { --brand:#a78bfa; --brand-2:#7c3aed; --brand-soft:rgba(167,139,250,.15); }
+.theme-hrs    { --brand:#38bdf8; --brand-2:#0369a1; --brand-soft:rgba(56,189,248,.15); }
+
+/* ============================================================
+   프린트 — 화면은 딥글래스, 인쇄는 흰 종이 + 검은 글씨
+   ============================================================ */
+@media print {
+    body { background: #fff !important; color: #111 !important; padding: 0; }
+    .hero, .page-head, .panel, .qa-card, .tip-box, .score-board {
+        background: #fff !important; border: 1px solid #ccc !important; color: #111 !important;
+    }
+    .hero h1, .page-head h1, .section-main-title, .question-title, .tt,
+    .info-table td, .info-table td strong { color: #111 !important; }
+    .hero::after, .page-head::after { display: none; }
+    .kicker, .subtitle, .dd, .info-table th, .sub-hint, .tip-list { color: #444 !important; }
+    .question-num { background: #1e293b !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .answer-box { background: #fff !important; border: 1px solid #bbb !important; border-left: 3px solid #1e293b !important; color: #333 !important; min-height: 60px; }
+    .back-btn, .action-container, .submit-btn, .arr { display: none !important; }
+    .interviewer { background:#eef2f8 !important; color:#1e3a5f !important; border-color:#94a3b8 !important; }
+    .interviewee { background:#fffbe8 !important; color:#8a6d00 !important; border-color:#d4b106 !important; }
+    .main-table, .screen { background:#fafafa !important; color:#555 !important; }
+}
+
+/* ============================================================
+   기존 페이지 호환용 보강 (레거시 클래스 매핑)
+   ============================================================ */
+
+/* 기존 흰색 컨테이너 → 투명 처리 (딥글래스 배경이 body에 있으므로) */
+.container {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+/* pre 태그로 된 answer-box도 동일 처리 */
+pre.answer-box { font-family: inherit; }
+
+/* 기존 흰색 헤더(text-align:center) → 딥글래스 page-head로 승격 */
+.container > header {
+    position: relative;
+    margin-bottom: 30px;
+    padding: 34px 34px 30px;
+    background: radial-gradient(130% 130% at 0% 0%, rgba(37,99,235,.3) 0%, rgba(15,23,41,0) 60%), var(--panel-solid);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    overflow: hidden;
+}
+.container > header h1 { color: #fff; font-size: 2rem; font-weight: 900; letter-spacing: -1px; margin: 0 0 8px; }
+.container > header .subtitle { color: var(--text-mid); margin: 0; }
+.container > header .back-btn { position: absolute; left: 22px; top: 22px; }
+
+/* interview-room-section = 딥글래스 panel */
+.interview-room-section {
+    background: var(--panel-solid) !important;
+    border: 1px solid var(--line) !important;
+    border-radius: var(--radius) !important;
+    box-shadow: none !important;
+    padding: 26px 24px !important;
+    margin-bottom: 26px !important;
+}
+
+/* section-title (레거시) = section-main-title 과 동일 스타일 */
+.section-title {
+    font-size: 1.25rem; font-weight: 800; color: #fff;
+    margin: 40px 0 20px; letter-spacing: -.5px;
+    border-left: none; padding-left: 0;
+    display: flex; align-items: center; gap: 12px;
+}
+.section-title::before {
+    content: ''; width: 6px; height: 22px; border-radius: 3px;
+    background: linear-gradient(180deg, var(--brand), var(--brand-2));
+}
+
+/* 레거시 section-main-title 이 인라인 배경색을 가진 경우 덮어쓰기 */
+.section-main-title[style*="background"] { background: none !important; }
+.section-main-title[style*="background"]::before { background: linear-gradient(180deg, var(--brand), var(--brand-2)); }
+
+/* HTS 전용: room-container (테두리 박스) */
+.room-container {
+    position: relative; max-width: 620px; margin: 0 auto;
+    border: 1px solid var(--line-strong); padding: 34px 20px; border-radius: 12px;
+    background: rgba(255,255,255,.02);
+}
+
+/* humetro 전용: 원형 지원자 / 입구 */
+.interviewee-circle {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: rgba(251,191,36,.10); color: #fcd34d; border: 1.5px solid rgba(251,191,36,.4);
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; text-align: center;
+}
+.entrance {
+    position: absolute; bottom: 0; left: 0;
+    width: 76px; height: 40px; border: 1.5px dashed var(--line-strong);
+    background: rgba(255,255,255,.03); color: var(--text-dim);
+    font-size: 0.82rem; display: flex; align-items: center; justify-content: center; font-weight: 700; border-radius: 8px;
+}
+
+/* 힌트 박스 (kepco/humetro 기술 팁) */
+.hint-box {
+    background: rgba(59,130,246,.08); border: 1px solid rgba(59,130,246,.22);
+    border-left: 3px solid var(--brand); border-radius: 8px;
+    padding: 14px 16px; margin-bottom: 12px; font-size: 0.9rem; color: #bfdbfe;
+}
+.hint-box strong { color: #dbeafe; }
+
+/* Coupang/db: 빨간 지침 안내 (sub-question-info) */
+.sub-question-info {
+    display: block; margin-top: 8px; color: #fca5a5; font-size: 0.88rem; font-weight: 600; padding-left: 4px;
+}
+/* amkr: 해당 학생 태그 (target-tag) */
+.target-tag {
+    background: rgba(248,113,113,.12); color: #fca5a5; font-size: 0.75rem; font-weight: 700;
+    padding: 2px 8px; border-radius: 5px; border: 1px solid rgba(248,113,113,.3); margin-left: 8px;
+}
+/* 레거시 인라인 배경 question-num (상황/공통 등) → 그라데이션 존중 */
+.question-num[style*="background"] { background: linear-gradient(140deg, var(--brand), var(--brand-2)) !important; }
+.question-num.common[style*="background"], .question-num.common { background: linear-gradient(140deg,#38bdf8,#0284c7) !important; }
+.question-num.personal { background: linear-gradient(140deg,#a78bfa,#7c3aed) !important; }
+
+/* 상세페이지 하단 여백 확보용 footer 없을 때 */
+.container { padding-bottom: 40px !important; }
+
+/* stats_2025 전용: 세로쓰기 입구 */
+.door {
+    position: absolute; top: 40px; right: -1px;
+    width: 34px; height: 70px;
+    background: rgba(255,255,255,.04); border: 1.5px solid var(--line-strong); border-right: none;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.82rem; font-weight: 700; color: var(--text-dim);
+    writing-mode: vertical-rl; text-orientation: upright; border-radius: 8px 0 0 8px;
+}
+
+/* samsung_display 전용: 하위 질문 텍스트 */
+.sub-q-text { display:block; margin-top:8px; font-size:0.9rem; color: var(--text-dim); font-weight:500; }

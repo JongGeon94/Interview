@@ -3,166 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>엠코테크놀로지 코리아 자료 선택</title>
-    <style>
-        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
-
-        body {
-            font-family: 'Pretendard', -apple-system, sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            background-attachment: fixed;
-            margin: 0;
-            padding: 80px 20px;
-            color: #0f172a;
-            -webkit-font-smoothing: antialiased;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 70vh;
-        }
-
-        .hub-container {
-            max-width: 800px;
-            width: 100%;
-            text-align: center;
-        }
-
-        header {
-            margin-bottom: 40px;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 900;
-            letter-spacing: -1.5px;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            color: #475569;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .choice-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            border-radius: 24px;
-            padding: 40px;
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .choice-card.ai-branch { border-top: 6px solid #7c3aed; }
-        .choice-card.interview-branch { border-top: 6px solid #0d5a3a; }
-
-        .choice-card:hover {
-            transform: translateY(-8px);
-            background: #ffffff;
-        }
-        .choice-card.ai-branch:hover { box-shadow: 0 20px 40px -10px rgba(124, 58, 237, 0.15); }
-        .choice-card.interview-branch:hover { box-shadow: 0 20px 40px -10px rgba(13, 90, 58, 0.15); }
-
-        .icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin: 0 0 12px 0;
-            letter-spacing: -0.5px;
-        }
-
-        p {
-            font-size: 0.95rem;
-            color: #475569;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            flex-grow: 1;
-        }
-
-        .btn {
-            display: block;
-            padding: 14px;
-            border-radius: 14px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            text-align: center;
-            border: 1px solid #e2e8f0;
-            background: #f8fafc;
-            color: #475569;
-            transition: all 0.3s ease;
-        }
-
-        .choice-card.ai-branch:hover .btn {
-            background: #7c3aed;
-            color: #fff;
-            border-color: #7c3aed;
-        }
-
-        .choice-card.interview-branch:hover .btn {
-            background: #0d5a3a;
-            color: #fff;
-            border-color: #0d5a3a;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-top: 40px;
-            color: #64748b;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-        .back-link:hover { color: #0f172a; }
-    </style>
+    <title>엠코테크놀로지 코리아</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="theme-amkr">
 
-<div class="hub-container">
-    <header>
-        <h1>🏢 엠코테크놀로지 코리아</h1>
-        <div class="subtitle">확인하고자 하는 실전 아카이브 자료를 선택하세요.</div>
-    </header>
+<div class="container">
 
-    <div class="grid">
-        <!-- AI 역량검사 링크 -->
-        <a href="amkraitest.html" class="choice-card ai-branch">
-            <div>
-                <div class="icon">🤖</div>
-                <h2>AI 역량검사 시뮬레이션</h2>
-                <p>실제 출제되었던 기초 수리, 언어 관계 퀴즈 및 AI 게임 대응 프로세스 테스트</p>
+    <div class="page-head">
+        <a href="index.html" class="back-btn">⬅ 메인 대시보드</a>
+        <h1>🔬 엠코테크놀로지 코리아</h1>
+        <p class="subtitle">확인하고자 하는 실전 아카이브 자료를 선택하세요.</p>
+    </div>
+
+    <div class="list-grid">
+        <a href="amkraitest.html" class="list-card">
+            <div class="ico">🤖</div>
+            <div class="meta">
+                <p class="tt">AI 역량검사 시뮬레이션</p>
+                <p class="dd">기초 수리·언어 관계 퀴즈 및 AI 게임 대응 (실시간 채점)</p>
             </div>
-            <span class="btn">테스트 시작하기</span>
+            <span class="arr">→</span>
         </a>
-
-        <!-- 면접 복기 링크 (파일명이 다르면 실제 파일명으로 수정 가능) -->
-        <a href="amkrinterview.html" class="choice-card interview-branch">
-            <div>
-                <div class="icon">📝</div>
-                <h2>실전 면접 질문 복기</h2>
-                <p>오퍼레이터 및 제조 직무 최종 다대다 면접장 분위기, 기출 질문 및 합격 답변 팁</p>
+        <a href="amkrinterview.html" class="list-card">
+            <div class="ico">📝</div>
+            <div class="meta">
+                <p class="tt">실전 면접 질문 복기</p>
+                <p class="dd">오퍼레이터·제조 직무 다대다 면접 기출 및 팁</p>
             </div>
-            <span class="btn">면접 복기 보기</span>
+            <span class="arr">→</span>
         </a>
     </div>
 
-    <a href="index.html" class="back-link">← 메인 대시보드로 돌아가기</a>
+    <div class="center"><a href="index.html" class="btn-home">← 메인 대시보드로</a></div>
+
 </div>
 
 </body>
