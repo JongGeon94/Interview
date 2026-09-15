@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국항공우주산업(KAI) 2024학년도 면접 복기</title>
+    <style>
+        :root {
+            --primary-color: #0a4d8c;
+            --accent-color: #0284c7;
+            --pt-color: #c2410c;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #222;
+        }
+        body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background-color: var(--bg-color); margin: 0; padding: 40px 20px; color: #333; line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; background: var(--card-bg); padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #e1e4e6; }
+        header { position: relative; margin-bottom: 40px; text-align: center; }
+        .back-btn { position: absolute; left: 0; top: 10px; color: #555; text-decoration: none; font-weight: bold; font-size: 0.95rem; transition: color 0.2s; }
+        .back-btn:hover { color: var(--primary-color); }
+        h1 { color: var(--primary-color); font-size: 2.3rem; margin: 0 0 10px 0; font-weight: 800; }
+        .subtitle { font-size: 1.1rem; color: #666; margin-bottom: 25px; }
+        .interview-room-section { background: #fff; border: 1px solid #e1e4e6; border-radius: 8px; padding: 30px 20px; margin-bottom: 35px; box-shadow: 0 2px 6px rgba(0,0,0,0.01); }
+        .room-title { font-size: 1.15rem; font-weight: bold; margin-bottom: 20px; text-align: center; color: #111; }
+        .room-block { margin-bottom: 30px; }
+        .room-block:last-child { margin-bottom: 0; }
+        .room-tag { display: inline-block; font-size: 0.85rem; font-weight: 700; padding: 4px 12px; border-radius: 50px; margin-bottom: 15px; }
+        .room-tag.type-in { background: #e0f2fe; color: #0369a1; }
+        .room-tag.type-pt { background: #ffedd5; color: #c2410c; }
+        .room-layout { display: flex; flex-direction: column; align-items: center; gap: 18px; max-width: 620px; margin: 0 auto; }
+        .row { display: flex; justify-content: center; width: 100%; gap: 20px; flex-wrap: wrap; }
+        .box { border: 2px solid var(--border-color); background: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9rem; border-radius: 4px; text-align: center; }
+        .interviewer { width: 100px; height: 50px; background-color: #f0f4f8; color: var(--primary-color); border-color: var(--primary-color); }
+        .main-table { width: 85%; height: 55px; border: 2px solid var(--border-color); background: #fafafa; display: flex; align-items: center; justify-content: center; color: #666; font-weight: bold; border-radius: 6px; font-size: 0.9rem; }
+        .interviewee { width: 100px; height: 50px; background-color: #fffdf0; color: #b78103; border-color: #b78103; }
+        .screen { width: 130px; height: 40px; background-color: #f1f5f9; color: #475569; border: 2px dashed #94a3b8; font-size: 0.85rem; }
+        .info-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .info-table tr { border-bottom: 1px solid #e2e8f0; }
+        .info-table tr:last-child { border-bottom: none; }
+        .info-table th { width: 25%; text-align: left; padding: 12px 10px; font-weight: 700; color: #334155; font-size: 0.95rem; }
+        .info-table td { width: 75%; padding: 12px 10px; color: #0f172a; font-size: 0.95rem; }
+        .section-main-title { font-size: 1.4rem; color: #fff; background-color: var(--primary-color); padding: 12px 20px; font-weight: 700; border-radius: 8px; margin: 45px 0 25px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .section-main-title.pt { background-color: var(--pt-color); }
+        .qa-list { display: flex; flex-direction: column; gap: 18px; }
+        .qa-card { background: #ffffff; border: 1px solid #e1e4e6; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+        .question-title { font-size: 1.08rem; font-weight: 700; color: #222; margin-bottom: 12px; }
+        .question-num { background: var(--primary-color); color: white; border-radius: 4px; padding: 2px 8px; font-size: 0.85rem; margin-right: 12px; }
+        .question-num.pt { background: var(--pt-color); }
+        .tag-common { display: inline-block; background: #eef2ff; color: #4338ca; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; border: 1px solid #c7d2fe; margin-left: 6px; vertical-align: middle; }
+        .sub-hint { display: block; font-size: 0.88rem; color: #64748b; font-weight: 500; margin-top: 8px; padding-left: 2px; }
+        .answer-box { background: #f8f9fa; border-radius: 6px; border-left: 4px solid #ccd1d9; padding: 14px; margin: 0; white-space: pre-wrap; color: #555; font-size: 0.95rem; }
+        .tip-box { background-color: #f0f9f4; border: 1px solid #ccecdb; border-radius: 8px; padding: 22px; margin-bottom: 25px; }
+        .tip-box.warn { background-color: #fff7ed; border-color: #fed7aa; }
+        .tip-title { font-size: 1.15rem; font-weight: 700; color: #00854a; margin-bottom: 12px; }
+        .tip-box.warn .tip-title { color: #c2410c; }
+        .tip-list { margin: 0; padding-left: 20px; }
+        .tip-list li { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <a href="kai_hub.html" class="back-btn">⬅ KAI 아카이브로</a>
+        <h1>한국항공우주산업(KAI) 2024년도 면접 복기</h1>
+        <div class="subtitle">현장직 고졸 채용 인성 + PT(실무) 면접 실전 기출 아카이브 워크북</div>
+    </header>
+
+    <div class="interview-room-section" style="padding: 20px 25px; margin-bottom: 25px;">
+        <table class="info-table">
+            <tr><th>지원 기업 / 직종</th><td>한국항공우주산업 (KAI) / <strong>현장직</strong></td></tr>
+            <tr><th>면접 일자</th><td>2024. 10. 11.</td></tr>
+            <tr><th>면접 장소</th><td>경상남도 사천시 사남면 공단1로 78</td></tr>
+            <tr><th>이동 경로 참고</th><td>부산 → 사천 (부모님 차 이용)</td></tr>
+            <tr><th>면접 시간</th><td>08:30 ~ 12:00</td></tr>
+            <tr><th>면접 형식</th><td><strong>지원자 2명 : 면접관 3~4명</strong> (인성 면접관 3명 · 실무 PT 면접관 4명)</td></tr>
+            <tr><th>진행 구성</th><td>인성 면접 + PT(실무) 면접 2단계 진행</td></tr>
+            <tr><th>복기 제공</th><td>3502 김민준 · 3605 김민규 (2인 통합 복기)</td></tr>
+        </table>
+    </div>
+
+    <div class="interview-room-section">
+        <div class="room-title">면접장 배치도</div>
+        <div class="room-block">
+            <div style="text-align:center;"><span class="room-tag type-in">인성 면접</span></div>
+            <div class="room-layout">
+                <div class="row"><div class="box interviewer">면접관 1</div><div class="box interviewer">면접관 2</div><div class="box interviewer">면접관 3</div></div>
+                <div class="main-table">중앙 테이블</div>
+                <div class="row"><div class="box interviewee">지원자 1</div><div class="box interviewee">지원자 2</div></div>
+            </div>
+        </div>
+        <div class="room-block">
+            <div style="text-align:center;"><span class="room-tag type-pt">PT(실무) 면접</span></div>
+            <div class="room-layout">
+                <div class="row"><div class="box interviewer">면접관 1</div><div class="box interviewer">면접관 2</div><div class="box interviewer">면접관 3</div><div class="box interviewer">면접관 4</div></div>
+                <div class="main-table">중앙 테이블</div>
+                <div class="row"><div class="box interviewee">지원자 1</div><div class="box interviewee">지원자 2</div></div>
+                <div class="box screen">프로젝터 / 스크린</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tip-box">
+        <div class="tip-title">💡 면접장 분위기 총평</div>
+        <ul class="tip-list">
+            <li><strong>인성 면접:</strong> 매우 편안하고 온화한 분위기. 면접관 리액션과 감탄사가 많고, 긴장 풀라고 잡담도 건네주심. 타 학교 지원자와 마주 앉아 진행해도 여유롭고 편안했음.</li>
+            <li><strong>PT(실무) 면접:</strong> 다소 경직된 분위기. 무표정하거나 인상을 쓰고 계시며 눈을 거의 마주치지 않음. 대답해도 반응이 없어 힘들 수 있고, 시비조·압박성 질문도 나옴.</li>
+        </ul>
+    </div>
+
+    <div class="section-main-title">📂 인성 면접 실전 기출 문항</div>
+    <div class="qa-list">
+        <div class="qa-card"><div class="question-title"><span class="question-num">인성 01</span> (가벼운 인사) 부산에서 오셨는데, 오늘 무엇을 타고 오셨나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">인성 02</span> 준비해 온 자기소개를 해보세요.</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">인성 03</span> 소통·협력을 위해 어떤 노력을 해왔나요?<span class="sub-hint">💡 자기소개에서 이어지는 꼬리질문으로 나옴.</span></div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">인성 04</span> 영어 관련 활동들이 많은데, 그 이유는 무엇인가요?<span class="sub-hint">💡 (관련 언급) 토익보다 회화가 더 중요하다는 취지의 이야기가 오갔음.</span></div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">인성 05</span> 토익과 오픽을 취득한 이유는 무엇인가요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">인성 06</span> 체력 증진을 위해 무엇을 했나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">인성 07</span> 농구 포지션이 어디였나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">인성 08</span> KAI 관련 경험(견학 등)이 지원 동기에 큰 영향을 주었나요?<span class="sub-hint">💡 경력사항(자소서) 기반 확인 질문.</span></div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">인성 09</span> 회사에 대해 아는 것을 모두 말해보세요.<span class="sub-hint">💡 (꼬리질문) 우리 회사가 만드는 것이 어디에 쓰이나요? / 어떻게 홍보하나요?</span></div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">인성 10</span> 상사가 꼰대라면 어떻게 대처하겠습니까?<span class="tag-common">공통 질문</span></div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">인성 11</span> 부당한 지시를 내린다면 어떻게 하겠습니까?<span class="tag-common">공통 질문</span></div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">인성 12</span> 밀당(밀고 당기기) 경험이 있나요?<span class="tag-common">공통 질문</span></div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">인성 13</span> 자신만의 리추얼(routine)이나 루틴이 있나요?<span class="tag-common">공통 질문</span></div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">인성 14</span> 준비했는데 못해서 아쉬웠던 것이 무엇인가요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num">인성 15</span> 면접관이 물어보지 않았지만 마지막으로 어필하고 싶은 점이 있다면 말씀해 보세요. (마지막 할 말)</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+    </div>
+
+    <div class="section-main-title pt">📋 PT(실무) 면접 실전 기출 문항</div>
+    <div class="qa-list">
+        <div class="qa-card" style="border-left: 5px solid var(--pt-color);"><div class="question-title"><span class="question-num pt">PT 발표</span> PT 발표 (3분, 타이머 진행)<span class="sub-hint">💡 주제: 본인의 경력사항 · 자격증 등. 발표 시간 3분에 딱 맞춰 준비할 것.</span></div><pre class="answer-box">【발표 스크립트 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num pt">실무 01</span> 회사에 들어와서 일과 동아리 활동을 어떻게 병행할 것인가요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num pt">실무 02</span> 현직자가 봤을 때 대외활동이 너무 많아 정작 한 가지에 집중하지 못한 것처럼 보이는데, 어떻게 생각하나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num pt">실무 03</span> 본인의 별명이 무엇인가요?<span class="sub-hint">💡 (꼬리질문) 긍정적인 별명 말고 부정적인 별명은 없는지도 물어봄.</span></div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num pt">실무 04</span> 입사 후 어떤 공부(자기계발)를 할 계획인가요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num pt">실무 05</span> 희망하는 조립 직무에 대하여 설명해 보세요.</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num pt">실무 06</span> 본인의 전공 역량에서 약점은 무엇이라고 생각하나요?</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num pt">실무 07</span> 항공 부품에 대해 아는 것을 말해보세요.</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num pt">실무 08</span> 조장/조원으로서 선배가 실수했을 때 어떻게 대처하겠습니까?<span class="tag-common">공통 질문</span></div><pre class="answer-box">【답변 작성 영역】</pre></div>
+        <div class="qa-card"><div class="question-title"><span class="question-num pt">실무 09</span> 마지막 할 말 (짧게)</div><pre class="answer-box">【답변 작성 영역】</pre></div>
+    </div>
+
+    <div class="tip-box warn" style="margin-top: 35px;">
+        <div class="tip-title">✔ 합격 선배가 전하는 실전 TIP</div>
+        <ul class="tip-list">
+            <li><strong>지원 절차 반복 확인:</strong> KAI만큼 입사 지원 절차가 까다로운 회사가 없음. 지원할 때 반복 또 반복해서 확인할 것.</li>
+            <li><strong>서류 미리 챙기기:</strong> 신분증(주민등록증)은 꼭 3~4일 전에 미리 챙기고 발급받아 둘 것.</li>
+            <li><strong>PT 방심 금지:</strong> 인성 잘 봤다고 방심하지 말 것. PT는 서류를 정리하느라 거의 안 보는 듯한 분위기이고, 앞 지원자가 발표를 오래 끌면 뒤 지원자가 질문을 몰아서 받을 수 있으니 발표 3분을 딱 맞추자.</li>
+            <li><strong>마음가짐:</strong> "면접이 목표가 아니라 나를 있는 그대로 보여주자"는 태도로 임하면 도움이 됨.</li>
+            <li><strong>평소 준비:</strong> 자격증은 적당히 따고 어학·대외활동·봉사활동(정기) 경험을 쌓아두면 면접에서 어떻게든 써먹을 수 있음. 회사를 많이 이해하고 갈수록 힘을 받음.</li>
+            <li><strong>기타:</strong> 정장을 입고 갈 것(다들 정장 착용). 면접장에서 다른 학교 지원자와 대화하면 긴장이 풀리고 경향 파악에도 도움이 됨. 부산 거주 학생은 정장 대여 서비스를 이용할 수 있음.</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>
