@@ -8,18 +8,18 @@
 
 :root {
     /* 배경 */
-    --bg-deep:      #0b1220;
-    --bg-deep-2:    #0f1729;
-    --panel:        rgba(255, 255, 255, 0.045);
+    --bg-deep:      #141d33;
+    --bg-deep-2:    #1a2340;
+    --panel:        rgba(255, 255, 255, 0.075);
     --panel-hover:  rgba(96, 165, 250, 0.10);
-    --panel-solid:  #131c30;
-    --line:         rgba(255, 255, 255, 0.08);
-    --line-strong:  rgba(255, 255, 255, 0.14);
+    --panel-solid:  #1e2947;
+    --line:         rgba(255, 255, 255, 0.14);
+    --line-strong:  rgba(255, 255, 255, 0.22);
 
     /* 텍스트 */
-    --text:         #eef2f9;
-    --text-mid:     #aeb9cc;
-    --text-dim:     #8493ab;
+    --text:         #ffffff;
+    --text-mid:     #cdd6e6;
+    --text-dim:     #9dabc4;
 
     /* 포인트 컬러 (기업별 오버라이드용 기본값) */
     --brand:        #3b82f6;
@@ -237,7 +237,7 @@ body {
     transition: border-color .25s;
 }
 .qa-card:hover { border-color: var(--line-strong); }
-.question-title { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 12px; line-height: 1.5; }
+.question-title { font-size: 1.05rem; font-weight: 700; color: #ffffff; margin-bottom: 12px; line-height: 1.5; }
 .question-num {
     display: inline-block;
     background: linear-gradient(140deg, var(--brand), var(--brand-2));
@@ -256,7 +256,7 @@ body {
     border: 1px solid var(--line);
     border-left: 3px solid var(--brand);
     border-radius: 8px; padding: 14px; margin: 12px 0 0;
-    white-space: pre-wrap; color: var(--text-mid); font-size: 0.94rem;
+    white-space: pre-wrap; color: #dbe3f0; font-size: 0.94rem;
 }
 .passage-box {
     background: rgba(0,0,0,.22); border: 1px solid var(--line);
