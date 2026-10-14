@@ -37,6 +37,12 @@
 
 * { box-sizing: border-box; }
 
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+}
+::selection { background: var(--brand); color: #fff; }
+
 body {
     font-family: 'Pretendard', -apple-system, sans-serif;
     background:
@@ -76,6 +82,14 @@ body {
     position: absolute; right: -60px; top: -60px;
     width: 220px; height: 220px; border-radius: 50%;
     background: var(--brand); opacity: .12; filter: blur(50px);
+    animation: floatOrb 9s ease-in-out infinite;
+}
+@keyframes floatOrb {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-16px, 14px) scale(1.08); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .hero::after, .page-head::after { animation: none !important; }
 }
 .kicker {
     display: inline-block;
@@ -107,6 +121,7 @@ body {
     content:''; position:absolute; right:-50px; bottom:-70px;
     width:200px; height:200px; border-radius:50%;
     background: var(--brand); opacity:.14; filter: blur(50px);
+    animation: floatOrb 9s ease-in-out infinite;
 }
 .page-head h1 { font-size: 2rem; font-weight: 900; letter-spacing: -1px; margin: 0 0 8px; color:#fff; }
 .page-head .subtitle { color: var(--text-mid); font-size: 1rem; margin: 0; font-weight: 500; }
@@ -116,7 +131,8 @@ body {
     font-weight: 700; font-size: 0.9rem; z-index: 2;
     transition: color .2s;
 }
-.back-btn:hover { color: #fff; }
+.back-btn:hover { color: #fff; transform: translateX(-3px); }
+.back-btn { transition: color .25s ease, transform .3s cubic-bezier(.16,1,.3,1); display: inline-block; }
 
 /* ---------- 섹션 구분 라벨 ---------- */
 .section-main-title {
@@ -153,25 +169,36 @@ body {
     border-radius: var(--radius);
     padding: 16px 18px;
     text-decoration: none; color: inherit;
-    transition: all .25s ease;
+    transition: transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s cubic-bezier(.16,1,.3,1), border-color .3s ease, background .3s ease;
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
+    will-change: transform;
 }
 .list-card {
     position: relative;
+    isolation: isolate;
 }
 .list-card::before {
     content: ''; position: absolute; left: 0; top: 12%; bottom: 12%;
     width: 4px; border-radius: 0 4px 4px 0;
     background: linear-gradient(180deg, var(--brand), var(--brand-2));
-    opacity: 0; transition: opacity .28s;
+    opacity: 0; transition: opacity .35s;
 }
+.list-card::after {
+    content: '';
+    position: absolute; inset: 0; border-radius: inherit;
+    background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 0%), rgba(255,255,255,.10), transparent 70%);
+    opacity: 0; transition: opacity .4s ease; pointer-events: none; z-index: 0;
+}
+.list-card:hover::after { opacity: 1; }
+.list-card > * { position: relative; z-index: 1; }
 .list-card:hover {
     background: var(--panel-hover);
     border-color: var(--brand);
-    transform: translateY(-4px) scale(1.012);
-    box-shadow: 0 16px 34px -14px var(--brand);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -18px rgba(0,0,0,.55), 0 10px 24px -14px var(--brand);
 }
+.list-card:active { transform: translateY(-2px) scale(.99); transition-duration: .12s; }
 .list-card:hover::before { opacity: 1; }
 .list-card:hover .ico { transform: scale(1.06); box-shadow: 0 8px 20px -5px var(--brand); }
 .list-card .ico { transition: all .28s cubic-bezier(0.16,1,0.3,1); }
@@ -260,9 +287,13 @@ body {
     border: 1px solid var(--line);
     border-radius: 14px;
     padding: 20px;
-    transition: border-color .25s;
+    transition: border-color .3s ease, transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s cubic-bezier(.16,1,.3,1);
 }
-.qa-card:hover { border-color: var(--line-strong); }
+.qa-card:hover {
+    border-color: var(--line-strong);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -18px rgba(0,0,0,.5);
+}
 .question-title { font-size: 1.05rem; font-weight: 700; color: #ffffff; margin-bottom: 12px; line-height: 1.5; }
 .question-num {
     display: inline-block;
@@ -332,14 +363,17 @@ body {
     box-shadow: 0 8px 22px -8px var(--brand); transition: .2s;
 }
 .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -8px var(--brand); }
+.submit-btn:active { transform: translateY(0) scale(.97); }
 
 /* ---------- 하단 버튼 / 링크 ---------- */
 .btn-home, .back-link {
     display: inline-block; background: var(--panel); color: var(--text);
     border: 1px solid var(--line-strong); padding: 13px 28px; border-radius: 12px;
-    text-decoration: none; font-weight: 700; font-size: 0.92rem; transition: .25s;
+    text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    transition: background .3s ease, border-color .3s ease, transform .3s cubic-bezier(.16,1,.3,1);
 }
-.btn-home:hover, .back-link:hover { background: var(--panel-hover); border-color: var(--brand); }
+.btn-home:hover, .back-link:hover { background: var(--panel-hover); border-color: var(--brand); transform: translateY(-2px); }
+.btn-home:active, .back-link:active { transform: translateY(0) scale(.97); }
 .center { text-align: center; margin-top: 36px; }
 
 footer {
@@ -530,4 +564,25 @@ pre.answer-box { font-family: inherit; }
 /* 로고가 흰 원이라 어두운 헤더에서도 잘 보이도록 살짝 밝은 원 배경 부여는 이미지 자체가 흰 배경이라 불필요 */
 @media (max-width: 560px) {
     .page-head, .container > header { background-size: auto, 44px 44px; background-position: 0 0, right 16px top 16px; }
+}
+
+/* ============================================================
+   스크롤 모션 — motion.js 가 <html class="js"> 를 붙인 뒤에만 동작.
+   JS가 없거나 실패해도 콘텐츠는 항상 보임 (프로그레시브 enhancement),
+   인쇄 시에도 항상 보임.
+   ============================================================ */
+html.js .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
+}
+html.js .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+    html.js .reveal { opacity: 1; transform: none; transition: none; }
+}
+@media print {
+    html.js .reveal { opacity: 1 !important; transform: none !important; }
 }
